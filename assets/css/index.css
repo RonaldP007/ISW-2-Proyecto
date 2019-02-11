@@ -1,0 +1,43 @@
+#menu {
+    text-align: center;
+    padding-left: 350px;
+    font-size: 15px;
+}
+
+#menu p {
+    padding: 5px;
+}
+
+aside a {
+    background-color: rgba(36, 37, 37, 0.493);
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    text-align: center;
+}
+
+#central {
+    min-height: 327px;
+    width: 70%;
+}
+
+#lateral {
+    min-height: 327px;
+    
+}
+
+.buttons {
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 74px;
+}
+
+#central {
+    padding: 2px;
+    text-align: center;
+}

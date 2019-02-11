@@ -1,0 +1,46 @@
+body {
+    background: -webkit-radial-gradient(circle, #aa8a5b, rgb(158, 147, 147));
+    
+}
+
+.centered-form {
+    margin-top: 25px;
+}
+
+.panel h2 {
+    color: #444444;
+    font-size: 18px;
+    margin: 0 0 8px 0;
+}
+
+.panel-title {
+    text-align: center;
+}
+
+.btn {
+    background: #f0ad4e;
+    color: white;
+}
+
+.btn:hover {
+    background: #beb09c;
+}
+
+.mensaje {
+    height: 80px;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+    margin-top: 60px;
+    border-radius: 8px;
+    margin-left: 38%;
+}
+
+p {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 10px;
+    color:#47443f;   
+}
