@@ -8,6 +8,8 @@ a:hover {
     color: #555555;
 }
 
+
+
 /*Container*/
 #container {
     width: 90%;
@@ -111,6 +113,12 @@ a:hover {
 #menu select:hover {
     background: #bcccd1;
     color: black;
+}
+
+/*boton agregar cliente*/
+.new {
+	margin-left: 110px;	
+	border-radius: 115px;
 }
 
 /*Lateral*/
