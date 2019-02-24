@@ -48,8 +48,8 @@
 										</div>
 
 										<div class="form-group">
-											<input class="form-control" placeholder="Proveedor" name="proveedor" type="text"  required
-											value="<?php echo $item['proveedor'];?>">
+											<input class="form-control" placeholder="Proveedor" name="id_proveedor" type="hidden"  required
+											value="<?php echo $item['id_proveedor'];?>">
 										</div>
 
 										<input class="btn btn-lg  btn-block" type="submit" value="Editar" name="Editar" >

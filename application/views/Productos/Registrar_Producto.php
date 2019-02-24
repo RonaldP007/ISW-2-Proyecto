@@ -68,7 +68,7 @@
                                         <input class="form-control" placeholder="Proveedor" name="proveedor" type="text"  required
                                         value="<?php
                                             if(isset($error)){
-                                                echo $this->session->flashdata('proveedor');
+                                                echo $this->session->flashdata('id_proveedor');
                                             }    
                                         ?>">
                                     </div>

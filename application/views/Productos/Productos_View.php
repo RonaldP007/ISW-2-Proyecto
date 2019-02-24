@@ -35,7 +35,7 @@
 
               <thead>
                 <tr>
-				  <th>ID</th>
+				  				<th>ID</th>
                   <th>Nombre</th>
                   <th>Cantidad</th>
                   <th>Precio</th>
@@ -71,7 +71,7 @@
 						?></td>
 
 						<td><?php 
-							echo $item['proveedor'];
+							echo $item['nombre_pv'];
 						?></td>
 
 						<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Productos/Producto/" . $id?>">Editar</a></td>

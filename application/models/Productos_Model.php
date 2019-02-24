@@ -7,7 +7,7 @@ Class Productos_Model extends CI_model{
   public $nombre;
   public $cantidad;
   public $precio;
-  public $proveedor;
+  public $id_proveedor;
   
 
   public function __construct(){
@@ -15,11 +15,11 @@ Class Productos_Model extends CI_model{
   }
 
    //registra la informacion de un nuevo Productos;
-   public function nuevo_Producto($nombre,$cantidad,$precio,$proveedor){
+   public function nuevo_Producto($nombre,$cantidad,$precio,$id_proveedor){
 		$this->nombre = $nombre;
 		$this->cantidad = $cantidad;
 		$this->precio = $precio;
-		$this->proveedor = $proveedor;
+		$this->id_proveedor = $id_proveedor;
 		
 		return $this->db->insert('productos', $this);
   }
@@ -47,9 +47,9 @@ Class Productos_Model extends CI_model{
     // Carga la informacion de los Productos
     public function ver_productos(){
 
-        $this->db->select('*');
-        $this->db->from('productos');
-        //$this->db->where('id_usuario',$id_usuario);
+			$this->db->select('p.id,p.nombre,p.cantidad,p.precio,p.id_proveedor,pv.nombre_pv');
+			$this->db->from('productos p');
+			$this->db->join('proveedores pv', 'p.id_proveedor = pv.id');
 
         $result = $this->db->get();
 
@@ -65,9 +65,10 @@ Class Productos_Model extends CI_model{
 	 // Carga la informacion de un Productos
 	 public function producto($id){
 
-        $this->db->select('*');
-        $this->db->from('productos');
-        $this->db->where('id',$id);
+				$this->db->select('p.id,p.nombre,p.cantidad,p.precio,p.id_proveedor,pv.nombre_pv');
+				$this->db->from('productos p');
+				$this->db->join('proveedores pv', 'p.id_proveedor = pv.id');
+        $this->db->where('p.id',$id);
 
         $result = $this->db->get();
 
@@ -82,7 +83,7 @@ Class Productos_Model extends CI_model{
 			'nombre' => $this->input->post('nombre'),
 			'cantidad'=> $this->input->post('cantidad'),
 			'precio'=> $this->input->post('precio'),
-			'proveedor'=> $this->input->post('proveedor')
+			'id_proveedor'=> $this->input->post('id_proveedor')
 		);
 		
 		if($id==0){

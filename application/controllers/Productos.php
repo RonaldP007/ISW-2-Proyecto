@@ -50,7 +50,7 @@ class Productos extends CI_Controller {
     }else{
 		$name= $this->input->post("nombre");
 		$cantidad= $this->input->post("cantidad");
-		$tel=  $this->input->post("precio");
+		$precio=  $this->input->post("precio");
 		$proveedor=  $this->input->post("proveedor");
 		$mensaje = "Esa id ya esta registrada";
 		$clase = "danger";
@@ -59,7 +59,7 @@ class Productos extends CI_Controller {
 			"clase" => $clase,
 			"nombre" => $name,
 			"cantidad" => $cantidad,
-			"precio" => $tel,
+			"precio" => $precio,
 			"proveedor" => $proveedor
 		
 			));
