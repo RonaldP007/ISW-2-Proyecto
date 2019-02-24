@@ -21,9 +21,9 @@ a:hover {
 
 /*Header*/
 #header {
-
     height: 145px;
-    background: #f0f0f0;
+    background-color: rgba(255, 255, 255, 0.425);
+    margin-top: 1px;
 }
 
 #logo {
@@ -34,6 +34,30 @@ a:hover {
 #logo img {
     float: left;
     width: 150px;
+}
+
+/*logo user*/
+#logoSuper{
+    float: left;
+    width: 314px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#logoSuper1{
+    float: left;
+    width: 314px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 5px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#btnAdd{
+    margin-left: 990px;
 }
 
 #logo a {
@@ -317,10 +341,11 @@ input[type="submit"]:hover {
     clear: both;
     text-align: center;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     color: white;
     background: #222222;
     border-top: 4px solid #838282d5;
+    margin-bottom: 4px;
 }
 
 .btn-success {

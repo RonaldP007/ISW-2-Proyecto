@@ -20,8 +20,7 @@
 
         <!--header-->
         <header id="header">
-            <div id="logo">
-                <img src="<?php echo base_url(); ?>/assets/img/logo.png" alt="Logo principal" />
-                <a href="#">Super Unisol</a>
+            <div>
+                <img id="logoSuper1" src="<?php echo base_url(); ?>/assets/img/logo_Super.jfif" alt="Logo principal" />
             </div>
         </header>

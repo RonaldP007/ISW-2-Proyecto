@@ -14,18 +14,20 @@
   <body>
     <div class="container">
 
-      <div id="logo">
-        <img src="<?php echo base_url(); ?>/assets/img/logo.png" alt="Logo principal" />
-        <a href= "<?= base_url('Usuarios/user_view') ?>"> Super Unisol</a>
+      <div>
+        <a href="<?= base_url('Usuarios/user_view') ?>">
+          <img id="logoSuper" src="<?php echo base_url(); ?>/assets/img/logo_Super.jfif" alt="Logo principal" />
+        </a>
       </div>
 
       <br /> <br /> <br />
       <br /> <br /> <br />
+      
+      <div class="panel panel-info" style="margin-top: 20px;">
 
-      <div class="panel panel-info">
-        
-        <div class="panel-heading">
-            <h3 class="panel-title">Usuarios</h3>
+        <div class="panel-heading" style="display: flex; text-align: center;">
+            <h3 class="panel-title" style="margin-top: 5px;">Usuarios</h3>
+            <a id="btnAdd" class="new btn btn-sm btn-primary" href="<?= base_url('Usuarios/registro') ?>">Agregar</a>
         </div>
 
         <div class="panel-body detalle-producto">
@@ -88,9 +90,6 @@
               
             </table>
 										
-                 
-                 
-
             <?php }else{?>
 
             <div class="panel-body"> No hay usuarios agregados</div>
@@ -99,8 +98,5 @@
         </div>
 		  </div>
     </div>
-
-		<a class="new btn btn-sm btn-primary" href="<?= base_url('Usuarios/registro') ?>">Agregar</a>
-
   </body>
 </html>

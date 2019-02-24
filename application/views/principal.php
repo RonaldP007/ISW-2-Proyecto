@@ -1,7 +1,7 @@
  <!--MENU-->
         <nav id="menu">
             <p>
-                <h2>Bienvenido al mejor Super de la zona</h2>
+                <h2>Bienvenido al mejor Super Unisol.</h2>
             </p>
         </nav>
 
