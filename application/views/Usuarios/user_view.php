@@ -17,6 +17,7 @@
 					<li><a href= "<?= base_url('Usuarios/getUsuarios')?>">Usuarios</a></li>
 					<li><a href= "<?= base_url('Clientes/getClientes')?>">Clientes</a></li>
 					<li><a href= "<?= base_url('Proveedores/getProveedores') ?>">Proveedores</a></li>
+					<li><a href= "<?= base_url('Productos/getProductos') ?>">Productos</a></li>
 					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li></li>
                 <ul>
                 <?php }else{ ?>
