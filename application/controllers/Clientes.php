@@ -34,7 +34,7 @@ class Clientes extends CI_Controller {
   } 
 
 
-	//guarda el registro de un nuevo usuario y valida si la cedula esta registrada
+	//guarda el registro de un nuevo cliente y valida si la cedula esta registrada
   public function nuevo_cliente(){
     
     $id_check= $this->Clientes_Model->id_check($this->input->post("cedula"));

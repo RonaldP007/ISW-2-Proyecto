@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-Class User_model extends CI_model{
+Class Usuarios_Model extends CI_model{
   
   public $cedula;
   public $nombre;
@@ -66,7 +66,68 @@ Class User_model extends CI_model{
 
       return false;
     }
-  }
+	}
+
+
+	 // Carga la informacion de los usuarios
+	 public function ver_usuarios(){
+
+		$this->db->select('*');
+		$this->db->from('usuarios');
+		//$this->db->where('id_usuario',$id_usuario);
+
+		$result = $this->db->get();
+
+		if(!$result->num_rows() == 1){
+
+				return false;
+		}
+
+		return $result->result_array();
+
+}
+
+// Carga la informacion de un usuario
+public function usuario($cedula){
+
+		$this->db->select('*');
+		$this->db->from('usuarios');
+		$this->db->where('cedula',$cedula);
+
+		$result = $this->db->get();
+
+		return $result->result_array();
+
+}
+
+
+//Cambia la informacion de un usuario
+public function update_usuario($cedula){
+$data=array(
+	'nombre' => $this->input->post('nombre'),
+	'apellidos'=> $this->input->post('apellidos'),
+	'telefono'=> $this->input->post('telefono'),
+	'direccion'=> $this->input->post('direccion')
+);
+
+	if($cedula==0){
+		return $this->db->insert('usuarios',$data);
+	}else{
+		$this->db->where('cedula',$cedula);
+		return $this->db->update('usuarios',$data);
+	}        
+}
+
+
+//elimina un cliente
+public function eliminar($cedula){
+
+$this->db->delete("usuarios", array("cedula" => $cedula));
+
+}
+
+	
+
 
 }
 

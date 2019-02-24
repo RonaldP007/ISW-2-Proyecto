@@ -1,8 +1,8 @@
 <?php
-            
+          
             if(!isset($_SESSION['nombre'])){//comprueba si existe el nombre de usuario
 
-                redirect('user/login');
+                redirect('Usuarios/login');
             
             }
                 
@@ -14,6 +14,7 @@
             <?php if($_SESSION['rol'] == "a"){ ?>
                 <ul>
 					<li><a class="btn btn-dark" href= "#">Inicio</a></li>
+					<li><a href= "<?= base_url('Usuarios/getUsuarios')?>">Usuarios</a></li>
 					<li><a href= "<?= base_url('Clientes/getClientes')?>">Clientes</a></li>
 					<li><a href= "<?= base_url('Proveedores/getProveedores') ?>">Proveedores</a></li>
 					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li></li>
@@ -37,7 +38,7 @@
                 <div id= "login" class="aside">
                     <h3>Bienvenido <?php echo " " . $_SESSION['nombre'];?></h3> 
                     <br/> <br/>
-                    <a href = "<?= base_url('user/user_logout') ?>" class="logout"> <img  style='margin-right: 15px;' width='18px' high='18px' src='<?php echo base_url(); ?>/glyph-iconset-master/svg/si-glyph-door.svg'/> Cerrar sesion</a> 
+                    <a href = "<?= base_url('Usuarios/user_logout') ?>" class="logout"> <img  style='margin-right: 15px;' width='18px' high='18px' src='<?php echo base_url(); ?>/glyph-iconset-master/svg/si-glyph-door.svg'/> Cerrar sesion</a> 
                     <br/> <br/> <br/>
                    
                     <?php if($_SESSION['rol'] == 'u'){ ?>

@@ -36,7 +36,7 @@
                             </div>
                         <?php endif; ?>
 
-                            <form method="post" action="<?php echo base_url('user/guardar'); ?>">
+                            <form method="post" action="<?php echo base_url('Usuarios/guardar'); ?>">
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Cedula" name="cedula" type="text" autofocus onkeypress="return validar(event)" required>
                                     </div>

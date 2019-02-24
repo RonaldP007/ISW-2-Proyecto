@@ -16,7 +16,7 @@
 
       <div id="logo">
         <img src="<?php echo base_url(); ?>/assets/img/logo.png" alt="Logo principal" />
-        <a href= "<?= base_url('user/user_view') ?>"> Super Unisol</a>
+        <a href= "<?= base_url('Usuarios/user_view') ?>"> Super Unisol</a>
       </div>
 
       <br /> <br /> <br />

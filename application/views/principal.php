@@ -12,9 +12,9 @@
             <aside id="lateral">
                 <div class="buttons">
                     <br />
-                    <a href= "<?= base_url('user/login') ?>" role="button">Login</a> 
+                    <a href= "<?= base_url('Usuarios/login') ?>" role="button">Login</a> 
                     <br /><br /><br />
-                    <a href= "<?= base_url('user/index') ?>" role="button">Registro</a>
+                    <!-- <a href= "<?= base_url('Usuarios/index') ?>" role="button">Registro</a>-->
                     <br /><br /><br /> 
                 </div>
             </aside>
