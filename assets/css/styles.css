@@ -8,8 +8,6 @@ a:hover {
     color: #555555;
 }
 
-
-
 /*Container*/
 #container {
     width: 90%;
@@ -74,13 +72,29 @@ a:hover {
     text-shadow: 0px 2px 1 px #222222;
 }
 
-/*Menu*/
+/*Menu LOGIN*/
 #menu {
     clear: both;
-    background: #222;
+    margin-top: -10px;
+    background: rgb(40, 116, 166);
     color: white;
     height: 55px;
-    border-bottom: 4px solid #838282d5;
+    border-bottom: 4px solid rgb(241, 196, 15);
+}
+
+#title1{
+    margin-top: -10px;
+    margin-left: 15%;
+}
+
+.formLogin{
+    width: 800px;
+    margin-left: -95%;
+    margin-top: 10%;
+}
+
+.Login{
+    height: 200px;
 }
 
 #menu ul {
@@ -343,8 +357,8 @@ input[type="submit"]:hover {
     padding-top: 10px;
     padding-bottom: 15px;
     color: white;
-    background: #222222;
-    border-top: 4px solid #838282d5;
+    background: rgb(40, 116, 166);
+    border-top: 4px solid rgb(241, 196, 15);
     margin-bottom: 4px;
 }
 
