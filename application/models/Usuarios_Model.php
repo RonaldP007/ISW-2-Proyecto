@@ -53,7 +53,7 @@ Class Usuarios_Model extends CI_model{
   //extrae la cedula y contraseña de un usuario
   public function login_user($id,$pass){
 
-    $this->db->select('*');
+    $this->db->select('*'); 
     $this->db->from('usuarios');
     $this->db->where('cedula',$id);
     $this->db->where('pass',$pass);

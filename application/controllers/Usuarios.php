@@ -15,7 +15,7 @@ class Usuarios extends CI_Controller {
   //envia la informacion a la vista
   public function getUsuarios(){
 
-    $data['usuarios'] = $this->Usuarios_Model->ver_usuarios();
+    $data['usuarios'] = $this->Usuarios_Model->ver_usuarios(); 
     $this->load->view("Usuarios/Usuarios_View", $data);
 
 	}
@@ -82,7 +82,7 @@ class Usuarios extends CI_Controller {
 	//edita un Usuario
 	public function editar($cedula){
     
-		$this->Usuarios_Model->update_usuario($cedula);
+		$this->Usuarios_Model->update_usuario($cedula); 
 		redirect("Usuarios/getUsuarios");
 	 
 	}
@@ -104,21 +104,20 @@ class Usuarios extends CI_Controller {
 		  $this->session->set_userdata('rol',$data['rol']);
 	
 		  redirect("Usuarios/user_view");
-	
-		}else{
-		  
-		  $this->session->set_flashdata('error_msg', 'Datos Incorrectos');
-		  $this->load->view("Usuarios/login.php");
-		 
-	
 		}
-	  }
+		else{  
+		  $this->session->set_flashdata('error_msg', 'Datos Incorrectos');
+			///$this->load->view("Usuarios/login.php");
+			$this->load->view("header");
+      $this->load->view("principal");
+      $this->load->view("footer");
+		}
+	}
 	
 	//cierra la sesion abierta
 	public function user_logout(){
-
-	$this->session->sess_destroy();
-	redirect('Usuarios/login', 'refresh');
+		$this->session->sess_destroy();
+		redirect('principal/index', 'refresh');
 	}
 
 	//carga la vista de usuario
