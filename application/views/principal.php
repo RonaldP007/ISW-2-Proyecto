@@ -1,7 +1,7 @@
  <!--MENU-->
         <nav id="menu">
             <p>
-                <h2 id="title1">Bienvenido al mejor Super Unisol.</h2>
+                <h2 id="title1">Bienvenido al Super Unisol.</h2>
             </p>
         </nav>
 
