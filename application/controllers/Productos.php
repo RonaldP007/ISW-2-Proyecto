@@ -7,21 +7,19 @@ class Productos extends CI_Controller {
 
     parent::__construct();
     $this->load->model('Productos_Model');
+		$this->load->model('Proveedores_Model', 'proveedor');
 
 
   } 
 
   //envia la informacion a la vista
   public function getProductos(){
-
     $data['productos'] = $this->Productos_Model->ver_productos();
     $this->load->view("Productos/Productos_View", $data);
-
 	}
 
-
-	 //envia la informacion a la vista de edicion
-	 public function Producto($id){
+	//envia la informacion a la vista de edicion
+	public function Producto($id){
 
     $data['producto'] = $this->Productos_Model->producto($id);
     $this->load->view("Productos/Productos_Edit", $data);
@@ -30,9 +28,9 @@ class Productos extends CI_Controller {
 
 	 //carga la vista de registro
 	 public function registro(){
-    $this->load->view("Productos/Registrar_Producto.php");
-  } 
-
+		$pro['provedor'] = $this->proveedor->ver_proveedores();
+    $this->load->view("Productos/Registrar_Producto.php", $pro);
+	} 
 
 	//guarda el registro de un nuevo Producto y valida si el id esta registrada
   public function nuevo_producto(){
