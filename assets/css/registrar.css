@@ -3,7 +3,7 @@ body {
 }
 
 .centered-form {
-    margin-top: 25px;
+    margin-top: 70px;
 }
 
 .panel h2 {
@@ -22,7 +22,7 @@ body {
 }
 
 .btn:hover {
-    background: #beb09c;
+    background: rgb(163, 228, 215);
 }
 
 .mensaje {
