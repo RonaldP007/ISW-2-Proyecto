@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -65,12 +63,17 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Proveedor" name="proveedor" type="text"  required
-                                        value="<?php
-                                            if(isset($error)){
-                                                echo $this->session->flashdata('id_proveedor');
-                                            }    
-                                        ?>">
+                                        <div class="form-group col-md-13">
+                                            <select style="margin-left: 1px;" id="proveedor" name="proveedor" value="" class="form-control" required>
+                                                <option value="">Seleccionar</option>
+
+                                                <?php if(count($provedor)>0):?>
+                                                    <?php foreach($provedor as $pro):?>
+                                                        <option value="<?php echo $pro['id'];?>" ><?php echo $pro['nombre_pv'];?></option>
+                                                    <?php endforeach;?>
+                                                <?php endif;?>
+                                            </select>
+                                        </div>
                                     </div>
 
                                     <input class="btn btn-lg  btn-block" type="submit" value="Registrarse" name="Registrarse" >
