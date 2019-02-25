@@ -44,34 +44,34 @@ Class Proveedores_Model extends CI_model{
   }
 
      
-    // Carga la informacion de los Proveedores
-    public function ver_proveedores(){
+  // Carga la informacion de los Proveedores
+  public function ver_proveedores(){
 
-        $this->db->select('*');
-        $this->db->from('proveedores');
-        //$this->db->where('id_usuario',$id_usuario);
+    $this->db->select('*');
+    $this->db->from('proveedores');
+    //$this->db->where('id_usuario',$id_usuario);
 
-        $result = $this->db->get();
+    $result = $this->db->get();
 
-        if(!$result->num_rows() == 1){
+    if(!$result->num_rows() == 1){
 
-            return false;
-        }
+        return false;
+    }
 
-        return $result->result_array();
+    return $result->result_array();
 
 	}
 
-	 // Carga la informacion de un Proveedor
-	 public function proveedor($id){
+	// Carga la informacion de un Proveedor
+	public function proveedor($id){
 
-        $this->db->select('*');
-        $this->db->from('proveedores');
-        $this->db->where('id',$id);
+    $this->db->select('*');
+    $this->db->from('proveedores');
+    $this->db->where('id',$id);
 
-        $result = $this->db->get();
+    $result = $this->db->get();
 
-        return $result->result_array();
+    return $result->result_array();
 
 	}
 
