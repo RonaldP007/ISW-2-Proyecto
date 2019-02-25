@@ -34,7 +34,7 @@
 								
 										<div class="form-group">
 											<input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus onkeypress="return soloLetras(event)" onblur="limpia()" id="miInput" required
-												value="<?php echo $item['nombre'];?>">
+												value="<?php echo $item['nombre_pv'];?>">
 										</div>
 
 										<div class="form-group">

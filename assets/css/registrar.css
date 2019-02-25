@@ -1,6 +1,5 @@
 body {
-    background: -webkit-radial-gradient(circle, #aa8a5b, rgb(158, 147, 147));
-    
+    background-color: rgb(133, 193, 233);
 }
 
 .centered-form {
@@ -18,7 +17,7 @@ body {
 }
 
 .btn {
-    background: #f0ad4e;
+    background: rgb(46, 134, 193);
     color: white;
 }
 
