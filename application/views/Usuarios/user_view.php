@@ -22,10 +22,9 @@
                 <ul>
                 <?php }else{ ?>
                     <ul>
-                        <li><a class="btn btn-dark" href= "#">Inicio</a></li>
-                        <li><a href= "<?= base_url('Clientes/getClientes')?>">Clientes</a></li>
-                        <li><a href= "<?= base_url('factura/getFacturas') ?>">Facturas</a></li>
-                        <li><a href= "<?php echo base_url('productos/venta_Productos');?>">Ver productos</a></li></li>
+                    <li><a href= "<?= base_url('Clientes/getClientes')?>">Clientes</a></li>
+                    <li><a href= "<?= base_url('Productos/getProductos') ?>">Productos</a></li>
+					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li></li>
                     <ul>
             <?php } ?>
         </nav>
