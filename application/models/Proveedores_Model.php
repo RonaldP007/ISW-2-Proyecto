@@ -79,7 +79,7 @@ Class Proveedores_Model extends CI_model{
 	//Cambia la informacion de un Proveedor
 	public function update_proveedor($id){
 		$data=array(
-			'nombre_pv' => $this->input->post('nombre'),
+			'nombre_pv' => $this->input->post('nombre_pv'),
 			'direccion'=> $this->input->post('direccion'),
 			'telefono'=> $this->input->post('telefono'),
 			'correo'=> $this->input->post('correo')
