@@ -52,6 +52,14 @@ class Ventas extends CI_Controller {
     $this->Ventas_Model->eliminar($id);
     redirect("Ventas/index");
  
+	}
+	
+	//borra un producto
+  public function eliminar_all(){
+    
+    $this->Ventas_Model->eliminar_all();
+    redirect("Ventas/index");
+ 
   }
 
 		

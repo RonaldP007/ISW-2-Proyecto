@@ -36,7 +36,7 @@
 
 				<button class="btn btn-sm" id="btnEnviar" type="submit">Agregar</button>
 				<br /><br />
-				<a class="btn btn-sm btn-danger" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Reiniciar</a>
+				<a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar_all/" ?>">Reiniciar</a>
 				<br /><br />
 				<a class="btn btn-sm btn-success" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar</a>
 				<br />

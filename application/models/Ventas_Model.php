@@ -65,6 +65,14 @@ Class Ventas_Model extends CI_model{
 		$this->db->delete("ventas", array("id" => $id));
 	
 	}
+
+
+	//elimina todos los elementos en la venta
+	public function eliminar_all(){
+	
+		$this->db->empty_table('ventas'); 
+	
+	}
 	
 	
 
