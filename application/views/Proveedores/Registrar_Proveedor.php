@@ -38,7 +38,7 @@
 
                             <form method="post" action="<?php echo base_url('Proveedores/nuevo_proveedor'); ?>">
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus onkeypress="return soloLetras(event)" onblur="limpia()" id="miInput" required
+                                        <input class="form-control" placeholder="Nombre" name="nombre_pv" type="text" autofocus onkeypress="return soloLetras(event)" onblur="limpia()" id="miInput" required
                                             value="<?php
                                             if(isset($error)){
                                                 echo $this->session->flashdata('nombre');
