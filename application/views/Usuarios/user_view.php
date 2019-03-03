@@ -25,6 +25,7 @@
                     <li><a href= "<?= base_url('Clientes/getClientes')?>">Clientes</a></li>
                     <li><a href= "<?= base_url('Productos/getProductos') ?>">Productos</a></li>
 					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li></li>
+					<li><a href= "<?= base_url('Ventas/index')?>">Ventas</a></li>
                     <ul>
             <?php } ?>
         </nav>
@@ -42,7 +43,7 @@
                     <br/> <br/> <br/>
                    
                     <?php if($_SESSION['rol'] == 'u'){ ?>
-                        
+                    
                     <?php }else{ ?>
                         <?php
                            
