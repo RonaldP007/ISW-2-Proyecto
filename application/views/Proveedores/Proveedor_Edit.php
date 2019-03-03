@@ -43,7 +43,7 @@
 										</div>
 										
 										<div class="form-group">
-											<input class="form-control" placeholder="Telefono" name="telefono" type="text" onkeypress="return validar(event)" required
+											<input class="form-control" placeholder="Telefono" name="telefono" type="text" onkeypress="return validar(event)"
 												value="<?php echo $item['telefono'];?>">
 										</div>
 
