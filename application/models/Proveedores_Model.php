@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 Class Proveedores_Model extends CI_model{
   
   public $id;
-  public $nombre;
+  public $nombre_pv;
   public $direccion;
   public $telefono;
   public $correo;
@@ -15,8 +15,8 @@ Class Proveedores_Model extends CI_model{
   }
 
    //registra la informacion de un nuevo Proveedor;
-   public function nuevo_Proveedor($nombre,$direccion,$telefono,$correo){
-		$this->nombre = $nombre;
+   public function nuevo_Proveedor($nombre_pv,$direccion,$telefono,$correo){
+		$this->nombre_pv = $nombre_pv;
 		$this->direccion = $direccion;
 		$this->telefono = $telefono;
 		$this->correo = $correo;
@@ -85,12 +85,10 @@ Class Proveedores_Model extends CI_model{
 			'correo'=> $this->input->post('correo')
 		);
 		
-		if($id==0){
-			return $this->db->insert('proveedores',$data);
-		}else{
-			$this->db->where('id',$id);
-			return $this->db->update('proveedores',$data);
-		}        
+		
+    $this->db->where('id',$id);
+    return $this->db->update('proveedores',$data);
+          
   }
 	
 
