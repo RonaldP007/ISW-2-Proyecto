@@ -37,34 +37,13 @@ class Proveedores extends CI_Controller {
 	//guarda el registro de un nuevo PROVEEDOR y valida si el id esta registrada
   public function nuevo_proveedor(){
     
-    $id_check= $this->Proveedores_Model->id_check($this->input->post("id"));
-    if($id_check){
-      $resultado = $this->Proveedores_Model->nuevo_proveedor(
-        $this->input->post("nombre"),
-				$this->input->post("direccion"),
-				$this->input->post("telefono"),
-				$this->input->post("correo")
-        );
-        redirect("Proveedores/getProveedores");
-   
-    }else{
-			$name= $this->input->post("nombre");
-			$dir= $this->input->post("direccion");
-      $tel=  $this->input->post("telefono");
-      $correo=  $this->input->post("correo");
-      $mensaje = "Esa id ya esta registrada";
-      $clase = "danger";
-      $this->session->set_flashdata(array(
-        "mensaje" => $mensaje,
-        "clase" => $clase,
-        "nombre" => $name,
-        "direccion" => $dir,
-				"telefono" => $tel,
-				"correo" => $correo
-       
-        ));
-      redirect("Proveedores/registro");
-		}	
+    $resultado = $this->Proveedores_Model->nuevo_proveedor(
+      $this->input->post("nombre"),
+      $this->input->post("direccion"),
+      $this->input->post("telefono"),
+      $this->input->post("correo")
+      );
+      redirect("Proveedores/getProveedores");	
 	}
 	
 	//borra un Proveedores
@@ -78,7 +57,7 @@ class Proveedores extends CI_Controller {
 	//edita un Proveedores
 	public function editar($id){
     
-		$this->Proveedores_Model->update_proveedor($id);
+		$this->Proveedores_Model->update_proveedor($id); 
 		redirect("Proveedores/getProveedores");
 	 
 	}
