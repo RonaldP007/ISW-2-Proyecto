@@ -15,14 +15,14 @@
   <body>
 		<div class="container">
 
-		<div>
-			<a href="<?= base_url('Usuarios/user_view') ?>">
-			<img id="logoSuper" src="<?php echo base_url(); ?>/assets/img/logo_Super.jfif" alt="Logo principal" />
-			</a>
-		</div>
+			<div>
+				<a href="<?= base_url('Usuarios/user_view') ?>">
+					<img id="logoSuper" src="<?php echo base_url(); ?>/assets/img/logo_Super.jfif" alt="Logo principal" />
+				</a>
+			</div>
 
-		<br /> <br /> <br />
-		<br /> <br /> <br />
+			<br /> <br /> <br />
+			<br /> <br /> <br />
 
 			<form method="post" action="<?php echo base_url() . "Ventas/nuevo_registro_p/"?>">
 									
@@ -42,89 +42,88 @@
 				<br />
 			</form>
 
-			<br />
-			
-		
-		<div class="panel panel-info" style="margin-top: 20px;">
-
-			<div class="panel-heading" style="display: flex; text-align: center;">
-				<h3 class="panel-title" style="margin-top: 5px;">Ventas</h3>
+			<br/>
 				
-			</div>
+			<div class="panel panel-info" style="margin-top: 20px;">
 
-			<div class="panel-body detalle-producto" id="productos">
-
-			<?php if($productos != false){?>
-				<table class="table">
-
-				<thead>
-					<tr>
-					<th>ID</th>
-					<th>Producto</th>
-					<th>Precio</th>
-					<th>Cantidad</th>
-					<th>Total</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<?php
-						$totales = 0;
-						
-						foreach($productos as $item){?>
-								<tr>
-								
-								<td><?php  
-										$id = $item['id'];
-										echo $item['id_producto'];
-									?></td>
-
-									<td><?php  
-										echo $item['nombre'];
-									?></td>
-
-									<td><?php 
-										echo "₡". $item['precio'];
-									?></td>
-
-									<td><?php  
-										echo $item['cantidad'];?>
-										<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/suma/" . $id ?>">+</a>
-										<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/resta/" . $id ?>" 
-											style=<?php
-												if($item["cantidad"] >1){
-												echo "";
-												}else{
-												echo "display:none";
-												}
-										?>>-</a>
-
-	
-									</td>
-
-									<td><?php 
-										$total= $item['precio']* $item['cantidad'];
-										echo "₡". $total;
-										$totales = $totales +$total;
-									?></td>
-
-									<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar/" . $id ?>"><i class="far fa-trash-alt"></i></a></td>
-
-								</tr>
-							<?php }?>
-				</tbody>
-				
-				</table>
-
-				<?php echo "<h3>". "Total Final     ₡" . $totales; "<h3>"?>
-											
-				<?php }else{?>
-
-				<div class="panel-body"> No hay productos agregados</div>
-
-					<?php }?>
+				<div class="panel-heading" style="display: flex; text-align: center;">
+					<h3 class="panel-title" style="margin-top: 5px;">Ventas</h3>
+					
 				</div>
-			</div>
+
+				<div class="panel-body detalle-producto" id="productos">
+
+				<?php if($productos != false){?>
+					<table class="table">
+
+					<thead>
+						<tr>
+						<th>ID</th>
+						<th>Producto</th>
+						<th>Precio</th>
+						<th>Cantidad</th>
+						<th>Total</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php
+							$totales = 0;
+							
+							foreach($productos as $item){?>
+									<tr>
+									
+									<td><?php  
+											$id = $item['id'];
+											echo $item['id_producto'];
+										?></td>
+
+										<td><?php  
+											echo $item['nombre'];
+										?></td>
+
+										<td><?php 
+											echo "₡". $item['precio'];
+										?></td>
+
+										<td><?php  
+											echo $item['cantidad'];?>
+											<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/suma/" . $id ?>">+</a>
+											<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/resta/" . $id ?>" 
+												style=<?php
+													if($item["cantidad"] >1){
+													echo "";
+													}else{
+													echo "display:none";
+													}
+											?>>-</a>
+
+		
+										</td>
+
+										<td><?php 
+											$total= $item['precio']* $item['cantidad'];
+											echo "₡". $total;
+											$totales = $totales +$total;
+										?></td>
+
+										<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar/" . $id ?>"><i class="far fa-trash-alt"></i></a></td>
+
+									</tr>
+								<?php }?>
+					</tbody>
+					
+					</table>
+
+					<?php echo "<h3>". "Total Final     ₡" . $totales; "<h3>"?>
+												
+					<?php }else{?>
+
+					<div class="panel-body"> No hay productos agregados</div>
+
+						<?php }?>
+					</div>
+				</div>
 		</div>
 
 		<!-- Scripts de acción al botón -->
