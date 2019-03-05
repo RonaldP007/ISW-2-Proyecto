@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Registro nuevo Cliente</title>
+    <title>Registro nueva Cuenta a Pagar</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title">
     <link rel="stylesheet"  href="<?php echo base_url(); ?>/assets/css/registrar.css">
 
@@ -36,45 +36,55 @@
                             </div>
                         <?php endif; ?>
 
-                            <form method="post" action="<?php echo base_url('Proveedores/nuevo_proveedor'); ?>">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Nombre" name="nombre_pv" type="text" autofocus required
+                            <form method="post" action="<?php echo base_url('Cuentas_pagar/nueva_cuenta'); ?>">
+									
+									<div class="form-group">
+                                        <input class="form-control" placeholder="Numero de factura" name="numero_factura" type="text" onkeypress="return validar(event)" required
                                             value="<?php
                                             if(isset($error)){
-                                                echo $this->session->flashdata('nombre_pv');
+                                                echo $this->session->flashdata('numero_factura');
                                             }    
                                         ?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Direccion" name="direccion" type="text" required
-                                            value="<?php
-                                            if(isset($error)){
-                                                echo $this->session->flashdata('direccion');
-                                            }    
-                                        ?>">
+									<div class="form-group">
+                                        <div class="form-group col-md-13">
+                                            <select style="margin-left: 1px;" id="proveedor" name="proveedor" value="" class="form-control" required>
+                                                <option value="">Seleccionar proveedor</option>
+
+                                                <?php if(count($provedor)>0):?>
+                                                    <?php foreach($provedor as $pro):?>
+                                                        <option value="<?php echo $pro['id'];?>" ><?php echo $pro['nombre_pv'];?></option>
+                                                    <?php endforeach;?>
+                                                <?php endif;?>
+                                            </select>
+                                        </div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Telefono" name="telefono" type="text" onkeypress="return validar(event)" required
+									
+									
+									<div class="form-group">
+                                        <input class="form-control" placeholder="Monto" name="monto" type="text" onkeypress="return validar(event)" required
                                             value="<?php
                                             if(isset($error)){
-                                                echo $this->session->flashdata('telefono');
+                                                echo $this->session->flashdata('monto');
                                             }    
                                         ?>">
                                     </div>
 
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Correo" name="correo" type="text"  required
-                                        value="<?php
+
+									<div class="form-group">
+                                        <input class="form-control" placeholder="Fecha de pago" name="fecha_pago" type="date" onkeypress="return validar(event)" required
+                                            value="<?php
                                             if(isset($error)){
-                                                echo $this->session->flashdata('correo');
+                                                echo $this->session->flashdata('fecha_pago');
                                             }    
                                         ?>">
                                     </div>
+
+                                   
 
                                     <input class="btn btn-lg  btn-block" type="submit" value="Registrarse" name="Registrarse" >
-                                    <a class="btn btn-lg btn-block" href= "<?= base_url('Proveedores/getProveedores') ?>" role="button">Volver</a>  
+                                    <a class="btn btn-lg btn-block" href= "<?= base_url('Fiadores/getFiadores') ?>" role="button">Volver</a>  
                             </form>
 
                             <script>

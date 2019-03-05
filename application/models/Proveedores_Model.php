@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 Class Proveedores_Model extends CI_model{
-  
-  public $id;
+
   public $nombre_pv;
   public $direccion;
   public $telefono;

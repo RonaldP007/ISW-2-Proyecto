@@ -38,7 +38,7 @@ class Proveedores extends CI_Controller {
   public function nuevo_proveedor(){
     
     $resultado = $this->Proveedores_Model->nuevo_proveedor(
-      $this->input->post("nombre"),
+      $this->input->post("nombre_pv"),
       $this->input->post("direccion"),
       $this->input->post("telefono"),
       $this->input->post("correo")
