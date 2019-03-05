@@ -78,6 +78,20 @@
                                         ?>">
                                     </div>
 
+									<div class="form-group">
+                                        <div class="form-group col-md-13">
+                                            <select style="margin-left: 1px;" id="fiador" name="fiador" value="" class="form-control" required>
+                                                <option value="">Seleccionar Cedula Fiador</option>
+
+                                                <?php if(count($fiadores)>0):?>
+                                                    <?php foreach($fiadores as $fiador):?>
+                                                        <option value="<?php echo $fiador['cedula'];?>" ><?php echo $fiador['cedula'];?></option>
+                                                    <?php endforeach;?>
+                                                <?php endif;?>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <input class="btn btn-lg  btn-block" type="submit" value="Registrarse" name="Registrarse" >
                                     <a class="btn btn-lg btn-block" href= "<?= base_url('Clientes/getClientes') ?>" role="button">Volver</a>  
                             </form>

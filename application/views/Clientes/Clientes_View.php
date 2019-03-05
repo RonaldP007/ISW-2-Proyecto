@@ -42,7 +42,7 @@
                   <th>Apellidos</th>
                   <th>Telefono</th>
                   <th>Direccion</th>
-                  <th></th>
+                  <th>Cedula Fiador</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -76,6 +76,10 @@
 
                     <td><?php 
                       echo $item['direccion'];
+                    ?></td>
+
+										<td><?php 
+                      echo $item['id_fiador'];
                     ?></td>
 
 										<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Clientes/Cliente/" . $cedula?>">Editar</a></td>
