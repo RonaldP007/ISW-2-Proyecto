@@ -175,6 +175,7 @@ a:hover {
     margin: 5px auto;
     padding: 10px;
     border-radius: 15px;
+    justify-content: center;
 }
 
 #lateral h3 {
@@ -190,17 +191,60 @@ a:hover {
     border-bottom: 2px solid #838282d5;
     border-radius: 15px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-bottom: 15%;
+}
+
+/**  Esto es la parte del usuario trabajador  **/
+
+/*este id le pertenece a el div que contiene el modal para introducir contraseña admin y se pueda cerrar la caja*/
+#ex1{
+    background-color: transparent;
+    padding: 1px 1px;
+    height: 39%;
+    width: 50%;
+    border: none;
+}
+
+/*este le pertenece al boton de cerrar que se genera cuando se manda a llamar el modal*/
+.modal a.close-modal{
+    margin-top: -5%;
+    margin-left: 70%;
+}
+
+/*esta clase le pertenece al contenido del modal para cerrar caja*/
+.modal-content{
+    /*height:286px
+    margin-top: -6%;*/
+    border: none;
+    margin-top: -4%;
+    height: 35ex;
+    margin-top: -1%;
+    margin-left: 0.1%;
+}
+
+/*este id es para personalizar el boton de cerrar el modal que cierra la caja*/
+#btnCerrar{
+    margin-top: -0.1%;
+    margin-right: -3%;
+    width: 10%;
+    height: 10%;
+    text-align: center;
+    color: white;
+    background-color: rgb(241, 196, 15);;
+}
+
+/*esta clase es el del boton que manda a llamar el modal para cerrar la caja*/
+.btnCloseCaja{
+    margin-top: 3%;
+    margin-left: 25%;
+    margin-bottom: 10%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .logout {
-    text-decoration: none;
-    margin-left: 50px;
-    padding: 6px;
-    background-color: #e1e1e1;
-    color: black;
-    border-bottom: 2px solid #838282d5;
-    font-weight: bold;
-    border-radius: 15px;
+    margin-top: 3%;
+    margin-left: 25%;
+    margin-bottom: 15%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
