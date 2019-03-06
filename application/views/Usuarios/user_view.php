@@ -38,9 +38,12 @@
             <aside id= "lateral" > 
                 <div id= "login" class="aside">
                     <h3 id="bienvenida" >Bienvenido <?php echo " " . $_SESSION['nombre'];?></h3> 
-                    <!--Llama a el modal-->
-                    <a href="#ex1" rel="modal:open" type="button" class="btn btn-primary btnCloseCaja"> Cerrar Caja </a>
-                    <!--Cierra la seccion-->
+
+                    <?php if($_SESSION['rol'] == 'u') :?> 
+                        <!--Llama a el modal-->
+                        <a href="#ex1" rel="modal:open" type="button" class="btn btn-primary btnCloseCaja"> Cerrar Caja </a>
+                    <?php endif; ?>
+                        <!--Cierra la seccion-->
                     <a id="btnCerrarSesion" href = "<?= base_url('Usuarios/user_logout') ?>" class="btn btn-primary logout">Sign out  <i class="fas fa-sign-out-alt"></i></a> 
                     
                     <?php if($_SESSION['rol'] == 'u'){ ?> 
