@@ -16,6 +16,9 @@ Class Usuarios_Model extends CI_model{
     $this->load->database();
   }
 
+  public function verificarAdmin(){
+
+  }
 
   //registra la informacion de un nuevo usuario
   public function nuevo_user($cedula, $nombre, $apellidos,$telefono,$direccion,$pass,$rol){
@@ -69,8 +72,8 @@ Class Usuarios_Model extends CI_model{
 	}
 
 
-	 // Carga la informacion de los usuarios
-	 public function ver_usuarios(){
+  // Carga la informacion de los usuarios
+  public function ver_usuarios(){
 
 		$this->db->select('*');
 		$this->db->from('usuarios');
@@ -85,50 +88,50 @@ Class Usuarios_Model extends CI_model{
 
 		return $result->result_array();
 
-}
+  }
 
-// Carga la informacion de un usuario
-public function usuario($cedula){
+  // Carga la informacion de un usuario
+  public function usuario($cedula){
 
-		$this->db->select('*');
-		$this->db->from('usuarios');
-		$this->db->where('cedula',$cedula);
+      $this->db->select('*');
+      $this->db->from('usuarios');
+      $this->db->where('cedula',$cedula);
 
-		$result = $this->db->get();
+      $result = $this->db->get();
 
-		return $result->result_array();
+      return $result->result_array();
 
-}
-
-
-//Cambia la informacion de un usuario
-public function update_usuario($cedula){
-$data=array(
-	'nombre' => $this->input->post('nombre'),
-	'apellidos'=> $this->input->post('apellidos'),
-	'telefono'=> $this->input->post('telefono'),
-	'direccion'=> $this->input->post('direccion')
-);
-
-	if($cedula==0){
-		return $this->db->insert('usuarios',$data);
-	}else{
-		$this->db->where('cedula',$cedula);
-		return $this->db->update('usuarios',$data);
-	}        
-}
+  }
 
 
-//elimina un cliente
-public function eliminar($cedula){
+  //Cambia la informacion de un usuario
+  public function update_usuario($cedula){
+    $data=array(
+      'nombre' => $this->input->post('nombre'),
+      'apellidos'=> $this->input->post('apellidos'),
+      'telefono'=> $this->input->post('telefono'),
+      'direccion'=> $this->input->post('direccion')
+    );
 
-$this->db->delete("usuarios", array("cedula" => $cedula));
+    if($cedula==0){
+      return $this->db->insert('usuarios',$data);
+    }else{
+      $this->db->where('cedula',$cedula);
+      return $this->db->update('usuarios',$data);
+    }        
+  }
 
-}
 
-	
+  //elimina un cliente
+  public function eliminar($cedula){
 
+    $this->db->delete("usuarios", array("cedula" => $cedula));
 
+  }
+
+  public function validarAdmin(){
+    
+  }
 }
 
 ?>
