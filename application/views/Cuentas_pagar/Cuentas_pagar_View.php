@@ -4,7 +4,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
   <head>
     <title>Cuentas a proveedores</title>
 	  <link href="<?php echo base_url(); ?>/assets/css/bootstrap.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 
         <div class="panel-heading" style="display: flex; text-align: center;">
             <h3 class="panel-title" style="margin-top: 5px;">Pagos a Proveedores</h3>
-            <a id="btnAdd" class="new btn btn-sm btn-primary" href="<?= base_url('Cuentas_pagar/registro') ?>">Agregar</a>
+            <a id="btnAdd" style="margin-left: 80%;" class="new btn btn-sm btn-primary" href="<?= base_url('Cuentas_pagar/registro') ?>">Agregar</a>
         </div>
 
         <div class="panel-body detalle-producto">
