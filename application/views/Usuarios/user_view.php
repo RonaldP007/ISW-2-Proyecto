@@ -1,14 +1,13 @@
-<?php
-          
-            if(!isset($_SESSION['nombre'])){//comprueba si existe el nombre de usuario
-
-                redirect('Usuarios/login');
-            
-            }
-                
-
-        ?>        
+        <?php
         
+        if(!isset($_SESSION['nombre'])){//comprueba si existe el nombre de usuario
+
+            redirect('Usuarios/login');
+        
+        }
+                
+        ?>        
+
         <!--MENU-->
         <nav id= "menu">
             <?php if($_SESSION['rol'] == "a"){ ?>
@@ -37,28 +36,70 @@
             <!--Barra lateral-->
             <aside id= "lateral" > 
                 <div id= "login" class="aside">
-                    <h3>Bienvenido <?php echo " " . $_SESSION['nombre'];?></h3> 
-                    <br/> <br/>
-                    <a href = "<?= base_url('Usuarios/user_logout') ?>" class="logout">Sign out  <i class="fas fa-sign-out-alt"></i></a> 
-                    <br/> <br/> <br/>
-                   
-                    <?php if($_SESSION['rol'] == 'u'){ ?>
+                    <h3 id="bienvenida" >Bienvenido <?php echo " " . $_SESSION['nombre'];?></h3> 
+                    <!--Llama a el modal-->
+                    <a href="#ex1" rel="modal:open" type="button" class="btn btn-primary btnCloseCaja"> Cerrar Caja </a>
+                    <!--Cierra la seccion-->
+                    <a id="btnCerrarSesion" href = "<?= base_url('Usuarios/user_logout') ?>" class="btn btn-primary logout">Sign out  <i class="fas fa-sign-out-alt"></i></a> 
                     
+                    <?php if($_SESSION['rol'] == 'u'){ ?> 
+                        
                     <?php }else{ ?>
                         <?php
-                           
+                          
                         ?>
-
-                      
                     <?php } ?>
 
+                    <!-- Link to open the modal 
+                    <p><a href="#ex1" rel="modal:open">Open Modal</a></p> -->
+                    <!-- Este es el modal generado por jQuery     class="close-modal"-->
+
+                    <div id="ex1" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header" style=" background-color: rgb(241, 196, 15);">
+                                <h5 class="modal-title" id="verificarAdminLabel">Cerrar Caja</h5>
+                                <a  id="btnCerrar" href="#" rel="modal:close"><i class="fas fa-times"></i></a>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#" method="post">
+                                    <div class="form-group">
+                                        <label for="constraseñaAdmin">Constraseña Administrador</label>
+                                        <input class="form-control" type="password" name="passwordAdmin" id="passwordAdmin">
+                                    </div>
+                                    <button id="chequearAdmin" type="button" class="btn btn-primary" onclick="verficarAdmin()">Aceptar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </aside>
 
-           
-
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script>
-              
-            </script>
 
+                function CierraModal(){
+                    //cierra el modal que es generado por jQuery
+                    //esta es la clase del div la cual contiene todo el modal
+                    //para saber donde aparece esta clase debe ir al navegador y entrar a esta pagina y inspeccionar y la vera
+                    $('.jquery-modal').hide();
+                }
+
+                function verficarAdmin(){
+                    let pass = jQuery('#passwordAdmin').val();
+                    console.log(pass);
+
+                    jQuery.ajax({
+                        type: "POST",
+                        url: '<?php echo base_url();?>' + 'Usuarios/validarAdmin',
+                        data: {pass: pass},
+                        success: function(data){
+                            console.log(data);
+                        }
+                    });
+
+                    $("#passwordAdmin").val('');
+                    CierraModal();
+                }
+            </script>
+        </div>
+        
+        
