@@ -115,26 +115,27 @@ class Usuarios extends CI_Controller {
 	}
 	
 	//cierra la sesion abierta
-	public function user_logout(){
+	public function user_logout(){ 
 		$this->session->sess_destroy();
 		redirect('principal/index', 'refresh');
 	}
 
 	//carga la vista de usuario
 	public function user_view(){
-
 		$this->load->view("header_user");
 		$this->load->view("Usuarios/user_view");
-		$this->load->view("footer");
+		$this->load->view("footer"); 
 	}
-
 	
 	//carga la vista de login
 	public function login(){
 		$this->load->view("Usuarios/login.php");
 	} 
-	
 
+	public function validarAdmin(){
+		$pass = $this->input->post("pass");
+		echo "carro78 " . $pass;
+  }
 
 }
 ?>
