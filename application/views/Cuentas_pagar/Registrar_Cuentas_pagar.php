@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Registro nuevo Cliente</title>
+    <title>Registro nueva Cuenta a Pagar</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title">
     <link rel="stylesheet"  href="<?php echo base_url(); ?>/assets/css/registrar.css">
 
@@ -36,64 +36,55 @@
                             </div>
                         <?php endif; ?>
 
-                            <form method="post" action="<?php echo base_url('Clientes/nuevo_cliente'); ?>">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Cedula" name="cedula" type="text" autofocus onkeypress="return validar(event)" required>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Nombre" name="nombre" type="text" autofocus onkeypress="return soloLetras(event)" onblur="limpia()" id="miInput" required
+                            <form method="post" action="<?php echo base_url('Cuentas_pagar/nueva_cuenta'); ?>">
+									
+									<div class="form-group">
+                                        <input class="form-control" placeholder="Numero de factura" name="numero_factura" type="text" onkeypress="return validar(event)" required
                                             value="<?php
                                             if(isset($error)){
-                                                echo $this->session->flashdata('nombre');
-                                            }    
-                                        ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Apellidos" name="apellidos" type="text" autofocus onkeypress="return soloLetras(event)" onblur="limpia()" id="miInput" required
-                                            value="<?php
-                                            if(isset($error)){
-                                                echo $this->session->flashdata('apellidos');
-                                            }    
-                                        ?>">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Telefono" name="telefono" type="text" onkeypress="return validar(event)" required
-                                            value="<?php
-                                            if(isset($error)){
-                                                echo $this->session->flashdata('telefono');
-                                            }    
-                                        ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Direccion" name="direccion" type="text"  required
-                                        value="<?php
-                                            if(isset($error)){
-                                                echo $this->session->flashdata('direccion');
+                                                echo $this->session->flashdata('numero_factura');
                                             }    
                                         ?>">
                                     </div>
 
 									<div class="form-group">
                                         <div class="form-group col-md-13">
-                                            <select style="margin-left: 1px;" id="fiador" name="fiador" value="" class="form-control" required>
-                                                <option value="">Seleccionar Cedula Fiador</option>
+                                            <select style="margin-left: 1px;" id="proveedor" name="proveedor" value="" class="form-control" required>
+                                                <option value="">Seleccionar proveedor</option>
 
-                                                <?php if(count($fiadores)>0):?>
-                                                    <?php foreach($fiadores as $fiador):?>
-                                                        <option value="<?php echo $fiador['cedula'];?>" ><?php echo $fiador['cedula'];?></option>
+                                                <?php if(count($provedor)>0):?>
+                                                    <?php foreach($provedor as $pro):?>
+                                                        <option value="<?php echo $pro['id'];?>" ><?php echo $pro['nombre_pv'];?></option>
                                                     <?php endforeach;?>
                                                 <?php endif;?>
                                             </select>
                                         </div>
                                     </div>
+									
+									
+									<div class="form-group">
+                                        <input class="form-control" placeholder="Monto" name="monto" type="text" onkeypress="return validar(event)" required
+                                            value="<?php
+                                            if(isset($error)){
+                                                echo $this->session->flashdata('monto');
+                                            }    
+                                        ?>">
+                                    </div>
+
+
+									<div class="form-group">
+                                        <input class="form-control" placeholder="Fecha de pago" name="fecha_pago" type="date" onkeypress="return validar(event)" required
+                                            value="<?php
+                                            if(isset($error)){
+                                                echo $this->session->flashdata('fecha_pago');
+                                            }    
+                                        ?>">
+                                    </div>
+
+                                   
 
                                     <input class="btn btn-lg  btn-block" type="submit" value="Registrarse" name="Registrarse" >
-                                    <a class="btn btn-lg btn-block" href= "<?= base_url('Clientes/getClientes') ?>" role="button">Volver</a>  
+                                    <a class="btn btn-lg btn-block" href= "<?= base_url('Fiadores/getFiadores') ?>" role="button">Volver</a>  
                             </form>
 
                             <script>

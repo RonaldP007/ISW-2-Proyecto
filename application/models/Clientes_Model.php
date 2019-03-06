@@ -7,7 +7,8 @@ Class Clientes_Model extends CI_model{
   public $nombre;
   public $apellidos;
   public $telefono;
-  public $direccion;
+	public $direccion;
+	public $id_fiador;
   
 
   public function __construct(){
@@ -15,12 +16,13 @@ Class Clientes_Model extends CI_model{
   }
 
    //registra la informacion de un nuevo cliente
-   public function nuevo_cliente($cedula, $nombre, $apellidos,$telefono,$direccion){
+   public function nuevo_cliente($cedula, $nombre, $apellidos,$telefono,$direccion,$id_fiador){
     $this->cedula = $cedula;
     $this->nombre = $nombre;
     $this->apellidos = $apellidos;
     $this->telefono = $telefono;
-    $this->direccion = $direccion;
+		$this->direccion = $direccion;
+		$this->id_fiador = $id_fiador;
     
     return $this->db->insert('clientes', $this);
   }
@@ -42,7 +44,24 @@ Class Clientes_Model extends CI_model{
       return true;
 
     }
-  }
+	}
+	
+	//Carga los fiadores
+	public function ver_fiadores(){
+
+    $this->db->select('*');
+    $this->db->from('fiadores');
+    //$this->db->where('id',$id);
+		$result = $this->db->get();
+
+		if(!$result->num_rows() == 1){
+
+				return false;
+		}
+
+		return $result->result_array();
+
+}
 
      
     // Carga la informacion de los clientes
@@ -83,7 +102,8 @@ Class Clientes_Model extends CI_model{
 			'nombre' => $this->input->post('nombre'),
 			'apellidos'=> $this->input->post('apellidos'),
 			'telefono'=> $this->input->post('telefono'),
-			'direccion'=> $this->input->post('direccion')
+			'direccion'=> $this->input->post('direccion'),
+			'id_fiador'=> $this->input->post('fiador')
 		);
 		
 		if($cedula==0){

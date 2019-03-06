@@ -23,14 +23,16 @@ class Clientes extends CI_Controller {
 	 //envia la informacion a la vista de edicion
 	 public function Cliente($cedula){
 
-    $data['cliente'] = $this->Clientes_Model->cliente($cedula);
+		$data['cliente'] = $this->Clientes_Model->cliente($cedula);
+		$data['fiadores'] = $this->Clientes_Model->ver_fiadores();
     $this->load->view("Clientes/Cliente_Edit", $data);
 
 	}
 
 	 //carga la vista de registro
 	 public function registro(){
-    $this->load->view("Clientes/Registrar_Cliente.php");
+		$fiadores['fiadores'] = $this->Clientes_Model->ver_fiadores();
+    $this->load->view("Clientes/Registrar_Cliente.php",$fiadores);
   } 
 
 
@@ -44,7 +46,8 @@ class Clientes extends CI_Controller {
         $this->input->post("nombre"),
         $this->input->post("apellidos"),
         $this->input->post("telefono"),
-        $this->input->post("direccion")
+				$this->input->post("direccion"),
+				$this->input->post("fiador")
         );
         redirect("Clientes/getClientes");
    
@@ -52,7 +55,8 @@ class Clientes extends CI_Controller {
       $name= $this->input->post("nombre");
       $last= $this->input->post("apellidos");
       $tel=  $this->input->post("telefono");
-      $dir= $this->input->post("direccion");
+			$dir= $this->input->post("direccion");
+			$fiador= $this->input->post("fiador");
       $mensaje = "Esa cedula ya esta registrada";
       $clase = "danger";
       $this->session->set_flashdata(array(
@@ -61,7 +65,7 @@ class Clientes extends CI_Controller {
         "nombre" => $name,
         "apellidos" => $last,
         "telefono" => $tel,
-        "direccion" => $dir,
+				"direccion" => $dir,
         ));
       redirect("Clientes/registro");
 		}	
