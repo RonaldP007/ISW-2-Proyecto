@@ -37,7 +37,7 @@
 
               <thead>
                 <tr>
-				  <th>Numero de factura</th>
+				  				<th>Numero de factura</th>
                   <th>Proveedor</th>
                   <th>Monto</th>
                   <th>Fecha Pago</th>
@@ -73,7 +73,6 @@
 										echo $item['fecha_pago'];
 								?></td>
 
-								<td><a class="btn btn-sm btn-info" href="<?php //echo base_url() . "Usuarios/Usuario/" . $cedula?>">Editar</a></td>
 								<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Cuentas_pagar/eliminar/" . $id?>">Eliminar</a></td>
 
 							</tr>

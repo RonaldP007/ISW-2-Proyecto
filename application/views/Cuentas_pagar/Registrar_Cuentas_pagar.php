@@ -84,7 +84,7 @@
                                    
 
                                     <input class="btn btn-lg  btn-block" type="submit" value="Registrarse" name="Registrarse" >
-                                    <a class="btn btn-lg btn-block" href= "<?= base_url('Fiadores/getFiadores') ?>" role="button">Volver</a>  
+                                    <a class="btn btn-lg btn-block" href= "<?= base_url('Cuentas_pagar/getCuentas_pagar') ?>" role="button">Volver</a>  
                             </form>
 
                             <script>

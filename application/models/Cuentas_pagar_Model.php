@@ -41,37 +41,6 @@ Class Cuentas_pagar_Model extends CI_model{
 		return $result->result_array();
 
 	}
-
-	// Carga la informacion de un Fiador
-	public function fiador($numero_factura){
-
-        $this->db->select('*');
-        $this->db->from('cuentasxpagar');
-        $this->db->where('numero_factura',$numero_factura);
-
-        $result = $this->db->get();
-
-        return $result->result_array();
-
-	}
-
-
-	//Cambia la informacion de un Fiador
-	public function update_fiador($numero_factura){
-		$data=array(
-			'id_proveedor' => $this->input->post('id_proveedor'),
-			'monto' => $this->input->post('monto'),
-			'fecha_pago'=> $this->input->post('fecha_pago'),
-			'direccion'=> $this->input->post('direccion')
-		);
-		
-		if($numero_factura==0){
-			return $this->db->insert('cuentasxpagar',$data);
-		}else{
-			$this->db->where('numero_factura',$numero_factura);
-			return $this->db->update('cuentasxpagar',$data);
-		}        
-  }
 	
 
 	//elimina una cuenta a pagar
