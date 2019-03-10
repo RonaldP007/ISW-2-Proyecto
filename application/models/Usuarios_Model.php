@@ -104,7 +104,7 @@ Class Usuarios_Model extends CI_model{
   }
 
 
-  //Cambia la informacion de un usuario
+  //Cambia la informacion de un usuario 
   public function update_usuario($cedula){
     $data=array(
       'nombre' => $this->input->post('nombre'),

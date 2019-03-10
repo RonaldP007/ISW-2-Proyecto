@@ -42,7 +42,7 @@
                   <th>Apellidos</th>
                   <th>Telefono</th>
                   <th>Direccion</th>
-                  <th></th>
+                  <th>Caja</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -78,7 +78,35 @@
 
 													<td><?php 
 														echo $item['direccion'];
-													?></td>
+                          ?></td>
+                          
+                          <td><?php $valor = $item['caja_activa'];?>
+                            <?php $id = $item['cedula']; ?>
+                            <select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control" onchange="actulizarOpcionCaja()" required>
+                              <?php if($valor === "1") :?>
+                                <option value="<?php echo "T";?>" <?php echo "selected";?>><?php echo "Habilitada";?></option>
+                                <option value="<?php echo "F";?>" > <?php echo "Desabilitada";?></option>
+                              <?php else :?>
+                                <option value="<?php echo "F";?>" <?php echo "selected";?>><?php echo "Desabilitada";?></option>
+                                <option value="<?php echo "T";?>"> <?php echo "Habilitada";?></option>
+                              <?php endif; ?>
+                              <script>
+                                function actulizarOpcionCaja(){
+                                  let valor = jQuery('#opcionCaja').val();
+                                  let user = '<?php echo $id; ?>';                                  
+                                  
+                                  $.ajax({
+                                    type: 'POST',
+                                    url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
+                                    data: {valor: valor, user: user},
+                                    success: function(data){
+                                      console.log(data);
+                                    }
+                                  })
+                                }
+                              </script>
+                            </select>
+                          </td>
 
 													<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Usuarios/Usuario/" . $cedula?>">Editar</a></td>
 													<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Usuarios/eliminar/" . $cedula?>">Eliminar</a></td>
@@ -87,9 +115,7 @@
 											<?php }?>
                     <?php }?>
               </tbody>
-              
-            </table>
-										
+            </table>										
             <?php }else{?>
 
             <div class="panel-body"> No hay usuarios agregados</div>
@@ -98,5 +124,7 @@
         </div>
 		  </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
   </body>
 </html>
