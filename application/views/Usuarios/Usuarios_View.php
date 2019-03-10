@@ -83,16 +83,8 @@
                           <td><?php $valor = $item['caja_activa'];?>
                             <?php $id = $item['cedula']; ?>
                             <select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control" onchange="actulizarOpcionCaja(<?php echo $id;?>)" required>
-                              <option id="caja" value="<?php if($valor == "1"){echo "T";}else{echo "F";} ?>" <?php if($valor == "1" || $valor == "0"){ echo "selected"; }?>>
-                                <?php if($valor == "1"){$tre = "tr"; echo "Habilitada";}else{$tre = "fa"; echo "Desabilitada";}?>
-                              </option>
-                              
-                              <?php if($tre == "fa") :?>
-                                <option value="<?php echo "T";?>"> <?php echo "Habilitada";?></option>
-                              <?php elseif($tre == "tr") :?>
-                                <option value="<?php echo "F";?>" > <?php echo "Desabilitada";?></option>
-                              <?php endif; ?>
-                              
+                              <option value="<?php echo "T";?>" <?php if($valor == "1"){ echo "selected"; }?>> <?php echo "Habilitada";?> </option>
+                              <option value="<?php echo "F";?>" <?php if($valor == "0"){ echo "selected"; }?>> <?php echo "Desabilitada";?> </option>
                             </select>
                           </td>
 
@@ -125,7 +117,6 @@
           data: {valor: valor0, user: user0},
           success: function(data){
             console.log(data);
-            //$("#$tr2").val('');
           }
         })
       }
