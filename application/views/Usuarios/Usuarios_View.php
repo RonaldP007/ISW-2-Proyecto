@@ -83,12 +83,14 @@
                           <td><?php $valor = $item['caja_activa'];?>
                             <?php $id = $item['cedula']; ?>
                             <select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control" onchange="actulizarOpcionCaja(<?php echo $id;?>)" required>
-                              <option id="caja" value="<?php if($valor == "1"){$val1="t"; echo "T";}else{$val1="f"; echo "F";} ?>" <?php if($valor == "1" || $valor == "0"){ echo "selected"; }?>><?php if($valor == "1"){$tre = "tr"; $tr2 = "T"; echo "Habilitada";}else{$tre = "fa"; $tr2 = "F"; echo "Desabilitada";}?></option>
+                              <option id="caja" value="<?php if($valor == "1"){echo "T";}else{echo "F";} ?>" <?php if($valor == "1" || $valor == "0"){ echo "selected"; }?>>
+                                <?php if($valor == "1"){$tre = "tr"; echo "Habilitada";}else{$tre = "fa"; echo "Desabilitada";}?>
+                              </option>
                               
-                              <?php if($tre == "tr") :?>
-                                <option value="<?php echo "F";?>" > <?php echo "Desabilitada";?></option>
-                              <?php elseif($tre == "fa") :?>
+                              <?php if($tre == "fa") :?>
                                 <option value="<?php echo "T";?>"> <?php echo "Habilitada";?></option>
+                              <?php elseif($tre == "tr") :?>
+                                <option value="<?php echo "F";?>" > <?php echo "Desabilitada";?></option>
                               <?php endif; ?>
                               
                             </select>
