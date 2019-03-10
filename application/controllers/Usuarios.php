@@ -132,6 +132,13 @@ class Usuarios extends CI_Controller {
 		$this->load->view("Usuarios/login.php");
 	} 
 
+	public function cambioCaja(){
+		$user = $this->input->post("user");
+		$accion = $this->input->post("valor");
+
+		echo $user . "  " . $accion;
+	}
+
 	public function validarAdmin(){
 		$pass = $this->input->post("pass");
 		echo "carro78 " . $pass;
