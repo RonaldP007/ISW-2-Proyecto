@@ -82,29 +82,15 @@
                           
                           <td><?php $valor = $item['caja_activa'];?>
                             <?php $id = $item['cedula']; ?>
-                            <select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control" onchange="actulizarOpcionCaja()" required>
-                              <?php if($valor === "1") :?>
-                                <option value="<?php echo "T";?>" <?php echo "selected";?>><?php echo "Habilitada";?></option>
+                            <select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control" onchange="actulizarOpcionCaja(<?php echo $id;?>)" required>
+                              <option id="caja" value="<?php if($valor == "1"){$val1="t"; echo "T";}else{$val1="f"; echo "F";} ?>" <?php if($valor == "1" || $valor == "0"){ echo "selected"; }?>><?php if($valor == "1"){$tre = "tr"; $tr2 = "T"; echo "Habilitada";}else{$tre = "fa"; $tr2 = "F"; echo "Desabilitada";}?></option>
+                              
+                              <?php if($tre == "tr") :?>
                                 <option value="<?php echo "F";?>" > <?php echo "Desabilitada";?></option>
-                              <?php else :?>
-                                <option value="<?php echo "F";?>" <?php echo "selected";?>><?php echo "Desabilitada";?></option>
+                              <?php elseif($tre == "fa") :?>
                                 <option value="<?php echo "T";?>"> <?php echo "Habilitada";?></option>
                               <?php endif; ?>
-                              <script>
-                                function actulizarOpcionCaja(){
-                                  let valor = jQuery('#opcionCaja').val();
-                                  let user = '<?php echo $id; ?>';                                  
-                                  
-                                  $.ajax({
-                                    type: 'POST',
-                                    url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
-                                    data: {valor: valor, user: user},
-                                    success: function(data){
-                                      console.log(data);
-                                    }
-                                  })
-                                }
-                              </script>
+                              
                             </select>
                           </td>
 
@@ -126,5 +112,21 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script>
+      function actulizarOpcionCaja(ced){
+        let valor0 = jQuery('#opcionCaja').val();
+        let user0 = '<?php echo ""; ?>';                                  
+        
+        $.ajax({
+          type: 'POST',
+          url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
+          data: {valor: valor0, user: user0},
+          success: function(data){
+            console.log(data);
+            //$("#$tr2").val('');
+          }
+        })
+      }
+    </script>
   </body>
 </html>
