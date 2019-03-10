@@ -12,13 +12,12 @@
         <nav id= "menu">
             <?php if($_SESSION['rol'] == "a"){ ?>
                 <ul>
-					<!---<li><a class="btn btn-dark" href= "#">Inicio</a></li>-->
 					<li><a href= "<?= base_url('Usuarios/getUsuarios')?>">Usuarios</a></li>
 					<li><a href= "<?= base_url('Clientes/getClientes')?>">Clientes</a></li>
 					<li><a href= "<?= base_url('Proveedores/getProveedores') ?>">Proveedores</a></li>
 					<li><a href= "<?= base_url('Productos/getProductos') ?>">Productos</a></li>
 					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li>
-					<li><a href= "<?php echo base_url('Cuentas_pagar/getCuentas_pagar');?>">Cuentas</a></li>
+                    <li><a href= "<?php echo base_url('Cuentas_pagar/getCuentas_pagar');?>">Cuentas</a></li>
                 <ul>
                 <?php }else{ ?>
                     <ul>
