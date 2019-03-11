@@ -449,10 +449,21 @@ input[type="submit"]:hover {
 
 #btnReiniciar{
     float: right;
-    margin-top: -15%;
+    margin-top: -19%;
     margin-right: 5%;
     font-size: 120%; 
     width: 10%;
+}
+
+#msj{
+    margin-top: -1.5%;
+}
+
+#mensaje{
+    padding: 2%;
+    max-height: 1px;
+    background-color: transparent;
+    width: 95%;   
 }
 
 #btnPagar{
