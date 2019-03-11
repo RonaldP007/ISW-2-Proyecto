@@ -125,16 +125,16 @@ class Ventas extends CI_Controller {
      // foreach($total as $unid){
         //$total_u = $unid["totales"];
      // }
-      $this->Facturas_Model->new_factura($_SESSION['cedula'], date("Y-m-d"), implode(";",$nombre_array), implode(";", $cantidad_array), implode(";", $precio_array), $total);
+      $this->Facturas_Model->new_factura($_SESSION['cedula'], date("Y-m-d"), implode(";",$nombre_array), implode(";", $precio_array), implode(";", $cantidad_array), $total);
       
       //cambia el estado de los productos del carrito y rebaja el stock de los productos
-    /*  for($i = 0; $i < count($id_car_array);$i++){
-        $result = $this->Carrito_model->cambiar_estado($id_car_array[$i]);
-        $stock = $this->Carrito_model->stock_restar($id_producto_array[$i],$cantidad_array[$i]);
+      for($i = 0; $i < count($id_producto_array);$i++){
+       // $result = $this->Carrito_model->cambiar_estado($id_car_array[$i]);
+			  $stock = $this->Ventas_Model->stock_restar($id_producto_array[$i],$cantidad_array[$i]);
       }
 
-      redirect("factura/getFacturas");
-		} */
+      //redirect("factura/getFacturas");
+		
 	
 			$this->Ventas_Model->eliminar_all();
     	redirect("Ventas/index");
