@@ -22,7 +22,7 @@
 			</div>
 
 			<br /> <br /> <br />
-			<br /> <br /> <br />
+			<br /> <br /> <br /> 
 
 			<form method="post" action="<?php echo base_url() . "Ventas/nuevo_registro_p/"?>">
 									
@@ -34,12 +34,12 @@
 					<input class="form-control" placeholder="Cantidad" name="cantidad" type="text" required>
 				</div>
 
-				<button class="btn btn-sm" id="btnEnviar" type="submit">Agregar</button>
+				<button class="btn btn-primary" id="btnEnviar" type="submit">Agregar</button>
 				<br /><br />
-				<a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar_all/" ?>">Reiniciar</a>
+				<a class="btn btn-danger btnReiniciar" id="btnReiniciar" href="<?php echo base_url() . "Ventas/eliminar_all/" ?>">Cancelar Compra</a>
 				<br /><br />
-				<a class="btn btn-sm btn-success" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar</a>
-				<br />
+				<a class="btn btn-primary" id="btnPagar" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Contado</a>
+				<a class="btn btn-primary" id="btnCredito" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Credito</a>
 			</form>
 
 			<br/>
@@ -48,84 +48,89 @@
 
 				<div class="panel-heading" style="display: flex; text-align: center;">
 					<h3 class="panel-title" style="margin-top: 5px;">Ventas</h3>
-					
 				</div>
 
 				<div class="panel-body detalle-producto" id="productos">
 
-				<?php if($productos != false){?>
-					<table class="table">
+					<?php if($productos != false){?>
+						<table class="table">
 
-					<thead>
-						<tr>
-						<th>ID</th>
-						<th>Producto</th>
-						<th>Precio</th>
-						<th>Cantidad</th>
-						<th>Total</th>
-						</tr>
-					</thead>
+							<thead>
+								<tr>
+								<th>ID</th>
+								<th>Producto</th>
+								<th>Precio</th>
+								<th>Cantidad</th>
+								<th>Total</th>
+								</tr>
+							</thead>
 
-					<tbody>
-						<?php
-							$totales = 0;
-							
-							foreach($productos as $item){?>
-									<tr>
+							<tbody>
+								<?php
+									$totales = 0;
 									
-									<td><?php  
-											$id = $item['id'];
-											echo $item['id_producto'];
-										?></td>
+									foreach($productos as $item){?>
+										<tr>
+											<td>
+												<?php  
+													$id = $item['id'];
+													echo $item['id_producto'];
+												?>
+											</td>
 
-										<td><?php  
-											echo $item['nombre'];
-										?></td>
+											<td>
+												<?php  
+													echo $item['nombre'];
+												?>
+											</td>
 
-										<td><?php 
-											echo "₡". $item['precio'];
-										?></td>
+											<td>
+												<?php 
+													echo "₡". $item['precio'];
+												?>
+											</td>
 
-										<td><?php  
-											echo $item['cantidad'];?>
-											<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/suma/" . $id ?>">+</a>
-											<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/resta/" . $id ?>" 
-												style=<?php
-													if($item["cantidad"] >1){
-													echo "";
-													}else{
-													echo "display:none";
-													}
-											?>>-</a>
+											<td>
+												<?php  
+												echo $item['cantidad'];?>
+												<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/suma/" . $id ?>">+</a>
+												<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/resta/" . $id ?>" 
+													style=
+														<?php
+															if($item["cantidad"] >1){
+															echo "";
+															}else{
+															echo "display:none";
+															}
+														?>>
+												</a>
+											</td>
 
-		
-										</td>
+											<td>
+												<?php 
+													$total= $item['precio']* $item['cantidad'];
+													echo "₡". $total;
+													$totales = $totales +$total;
+												?>
+											</td>
 
-										<td><?php 
-											$total= $item['precio']* $item['cantidad'];
-											echo "₡". $total;
-											$totales = $totales +$total;
-										?></td>
-
-										<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar/" . $id ?>"><i class="far fa-trash-alt"></i></a></td>
-
-									</tr>
+											<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar/" . $id ?>"><i class="far fa-trash-alt"></i></a></td>
+										</tr>
 								<?php }?>
-					</tbody>
-					
-					</table>
+							</tbody>
+						</table>
 
-					<?php echo "<h3>". "Total Final     ₡" . $totales; "<h3>"?>
-												
-					<?php }else{?>
+						<p id="total2">Total Final </p>
+						<?php echo "<h3 id='total'>". "₡" . $totales; "<h3>"?>
+													
+						<?php }else{?>
 
-					<div class="panel-body"> No hay productos agregados</div>
+						<div class="panel-body" id="noDatos"> No hay productos agregados</div>
 
-						<?php }?>
-					</div>
+					<?php }?>
 				</div>
+			</div>
 		</div>
-
 		<!-- Scripts de acción al botón -->
 		<script>
 		

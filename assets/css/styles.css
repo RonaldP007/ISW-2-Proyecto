@@ -317,18 +317,7 @@ input[type="email"]:focus {
 
 input[type="button"],
 input[type="submit"],
-button {
-    display: block;
-    border-radius: 2px;
-    width: auto;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: white;
-    background: #6181a3;
-    border: 1px solid #5794b8;
-    cursor: pointer;
-}
+
 
 label,
 input[type="button"],
@@ -451,4 +440,58 @@ input[type="submit"]:hover {
     font-size: 20px;
     color: #ffffff;
     border-radius: 6px;
+}
+
+#btnEnviar{
+    font-size: 120%; 
+    width: 10%;
+}
+
+#btnReiniciar{
+    float: right;
+    margin-top: -15%;
+    margin-right: 5%;
+    font-size: 120%; 
+    width: 10%;
+}
+
+#btnPagar{
+    float: right;
+    margin-top: -0.0%;
+    font-size: 120%; 
+    width: 10%;
+}
+
+#btnCredito{
+    float: right;
+    margin-top: -0.0%;
+    margin-right: 2%;
+    font-size: 120%; 
+    width: 10%;
+}
+
+#total{
+    float: right;
+    margin-right: 26%;
+    margin-top: -3%;
+}
+
+#total2{
+    font-size: 160%;
+}
+
+#productos{
+    overflow-y: scroll;
+    height: 300px;
+    width: 100%;
+}
+
+.table{
+    font-size: 120%;
+}
+
+#noDatos{
+    margin-left: 40%;
+    margin-top: 8%;
+    font-size: 130%;
 }
