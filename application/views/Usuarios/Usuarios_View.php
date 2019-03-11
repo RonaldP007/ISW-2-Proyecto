@@ -83,10 +83,25 @@
                           <td><?php $valor = $item['caja_activa'];?>
                             <?php $id = $item['cedula']; ?>
                             <select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control" onchange="actulizarOpcionCaja(<?php echo $id;?>)" >
-                              <option value="<?php echo "T";?>" <?php if($valor == "1"){ echo "selected"; }?>> <?php echo "Habilitada";?> </option>
-                              <option value="<?php echo "F";?>" <?php if($valor == "0"){ echo "selected"; }?>> <?php echo "Desabilitada";?> </option>
+                              <option id="opcion1" value="<?php echo "T";?>" <?php if($valor == "1"){ echo "selected"; }?>> <?php echo "Habilitada";?> </option>
+                              <option id="opcion2" value="<?php echo "F";?>" <?php if($valor == "0"){ echo "selected"; }?>> <?php echo "Desabilitada";?> </option>
                             </select>
                           </td>
+
+                          <script>
+                            function actulizarOpcionCaja(ced){
+                              let valor0 = jQuery('#opcionCaja').val();
+                             
+                              $.ajax({
+                                type: 'POST',
+                                url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
+                                data: {valor: valor0, user: ced},
+                                success: function(data){
+                                  console.log(data);
+                                }
+                              })
+                            }
+                          </script>
 
 													<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Usuarios/Usuario/" . $cedula?>">Editar</a></td>
 													<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Usuarios/eliminar/" . $cedula?>">Eliminar</a></td>
@@ -106,20 +121,5 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script>
-      function actulizarOpcionCaja(ced){
-        let valor0 = jQuery('#opcionCaja').val();
-        let user0 = '<?php echo ""; ?>';                                  
-        
-        $.ajax({
-          type: 'POST',
-          url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
-          data: {valor: valor0, user: ced},
-          success: function(data){
-            console.log(data);
-          }
-        })
-      }
-    </script>
   </body>
 </html>
