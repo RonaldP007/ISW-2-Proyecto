@@ -134,8 +134,10 @@ class Usuarios extends CI_Controller {
 
 	public function cambioCaja(){
 		$user = $this->input->post("user");
-		$accion = $this->input->post("valor");
-
+		$accion = $this->input->post("valor"); 
+		//$accion1 = $this->input->post("valor1");
+		//. " " . $accion1
+		
 		echo $user . "  " . $accion;
 	}
 
