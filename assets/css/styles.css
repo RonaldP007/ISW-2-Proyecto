@@ -220,7 +220,7 @@ a:hover {
     height: 35ex;
     margin-top: -1%;
     margin-left: 0.1%;
-}
+} 
 
 /*este id es para personalizar el boton de cerrar el modal que cierra la caja*/
 #btnCerrar{
@@ -230,7 +230,7 @@ a:hover {
     height: 10%;
     text-align: center;
     color: white;
-    background-color: rgb(241, 196, 15);;
+    background-color: rgb(241, 196, 15);
 }
 
 /*esta clase es el del boton que manda a llamar el modal para cerrar la caja*/
@@ -459,11 +459,25 @@ input[type="submit"]:hover {
     margin-top: -1.5%;
 }
 
+#msj2{
+    margin-top: -0.20%;
+}
+
 #mensaje{
     padding: 2%;
     max-height: 1px;
     background-color: transparent;
     width: 95%;   
+}
+
+#mensaje2{
+    padding: 2%;
+    max-height: 1px;
+    background-color: transparent;
+    width: 100%;  
+    margin-top: -9%;
+    margin-bottom: 5%; 
+    margin-left: -2%;
 }
 
 #btnPagar{
