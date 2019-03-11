@@ -28,7 +28,7 @@ Class Productos_Model extends CI_model{
   public function id_check($id){
 
     $this->db->select('*');
-    $this->db->from('productos');
+    $this->db->from('productos'); 
     $this->db->where('id',$id);
     $query=$this->db->get();
 

@@ -6,11 +6,19 @@
 <html lang="en">
   <head>
     <title>Ventas</title>
-	  <link href="<?php echo base_url(); ?>/assets/css/bootstrap.css" rel="stylesheet">
-	  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles.css">
-	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  </head>
+		<link href="<?php echo base_url(); ?>/assets/css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			setTimeout(function() {
+				$("#msj").fadeOut(1500);
+			},3000);
+		});
+		</script>
+	</head>
 
   <body>
 		<div class="container">
@@ -36,6 +44,19 @@
 
 				<button class="btn btn-primary" id="btnEnviar" type="submit">Agregar</button>
 				<br /><br />
+
+				<div id="mensaje">
+					<?php
+						if($this->session->flashdata('msg_error')){
+					?>
+					<div id="msj" class="alert alert-danger">
+						<?php echo $this->session->flashdata('msg_error'); ?>
+					</div>
+					<?php		
+						}
+					?>
+				</div>
+
 				<a class="btn btn-danger btnReiniciar" id="btnReiniciar" href="<?php echo base_url() . "Ventas/eliminar_all/" ?>">Cancelar Compra</a>
 				<br /><br />
 				<a class="btn btn-primary" id="btnPagar" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Contado</a>
