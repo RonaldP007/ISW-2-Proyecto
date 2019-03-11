@@ -59,7 +59,7 @@
 
 				<a class="btn btn-danger btnReiniciar" id="btnReiniciar" href="<?php echo base_url() . "Ventas/eliminar_all/" ?>">Cancelar Compra</a>
 				<br /><br />
-				<a class="btn btn-primary" id="btnPagar" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Contado</a>
+				
 				<a class="btn btn-primary" id="btnCredito" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Credito</a>
 			</form>
 
@@ -76,13 +76,23 @@
 					<?php if($productos != false){?>
 						<table class="table">
 
+							<?php 
+								
+								$id_producto_array = array();
+								$nombre_array = array();
+								$cantidad_array = array();
+								$precio_array = array();
+								$subtotal_array = array();
+									
+							?>
+
 							<thead>
 								<tr>
 								<th>ID</th>
 								<th>Producto</th>
 								<th>Precio</th>
 								<th>Cantidad</th>
-								<th>Total</th>
+								<th>SubTotal</th>
 								</tr>
 							</thead>
 
@@ -96,24 +106,29 @@
 												<?php  
 													$id = $item['id'];
 													echo $item['id_producto'];
+													$id_producto_array[] =  $item['id_producto'];
 												?>
 											</td>
 
 											<td>
 												<?php  
 													echo $item['nombre'];
+													$nombre_array[] = $item["nombre"];
 												?>
 											</td>
 
 											<td>
 												<?php 
 													echo "₡". $item['precio'];
+													$precio_array[] =  $item["precio"];
 												?>
 											</td>
 
 											<td>
 												<?php  
-												echo $item['cantidad'];?>
+												echo $item['cantidad'];
+												$cantidad_array[] =  $item["cantidad"];?>
+
 												<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/suma/" . $id ?>">+</a>
 												<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/resta/" . $id ?>" 
 													style=
@@ -123,7 +138,7 @@
 															}else{
 															echo "display:none";
 															}
-														?>>
+														?>>-
 												</a>
 											</td>
 
@@ -131,6 +146,7 @@
 												<?php 
 													$total= $item['precio']* $item['cantidad'];
 													echo "₡". $total;
+													$subtotal_array[] =  $total;
 													$totales = $totales +$total;
 												?>
 											</td>
@@ -138,6 +154,15 @@
 											<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar/" . $id ?>"><i class="far fa-trash-alt"></i></a></td>
 										</tr>
 								<?php }?>
+
+								<?php
+									$matriz = [$id_producto_array, $nombre_array, $precio_array,$cantidad_array, $subtotal_array,$totales];
+									$array_url = serialize($matriz);
+									$array_url = urlencode($array_url);  
+								?>  
+
+								<a class="btn btn-primary" id="btnPagar"  href="<?php echo base_url() . "Ventas/comprar/" . $array_url?>">Pagar Contado</a> 
+
 							</tbody>
 						</table>
 
