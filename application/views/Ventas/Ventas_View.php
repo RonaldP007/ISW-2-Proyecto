@@ -118,13 +118,6 @@
 											</td>
 
 											<td>
-												<?php 
-													echo "₡". $item['precio'];
-													$precio_array[] =  $item["precio"];
-												?>
-											</td>
-
-											<td>
 												<?php  
 												echo $item['cantidad'];
 												$cantidad_array[] =  $item["cantidad"];?>
@@ -144,6 +137,13 @@
 
 											<td>
 												<?php 
+													echo "₡". $item['precio'];
+													$precio_array[] =  $item["precio"];
+												?>
+											</td>
+
+											<td>
+												<?php 
 													$total= $item['precio']* $item['cantidad'];
 													echo "₡". $total;
 													$subtotal_array[] =  $total;
@@ -156,7 +156,7 @@
 								<?php }?>
 
 								<?php
-									$matriz = [$id_producto_array, $nombre_array, $precio_array,$cantidad_array, $subtotal_array,$totales];
+									$matriz = [$id_producto_array, $nombre_array, $cantidad_array, $precio_array, $subtotal_array,$totales];
 									$array_url = serialize($matriz);
 									$array_url = urlencode($array_url);  
 								?>  

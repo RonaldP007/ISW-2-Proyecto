@@ -73,6 +73,15 @@ Class Ventas_Model extends CI_model{
 		$this->db->empty_table('ventas'); 
 	
 	}
+
+	 //rebaja el stock de un producto al comprar
+	 function stock_restar($id_producto, $cantidad){
+   
+		$this->db->set('cantidad',"cantidad - '$cantidad'",false);
+   		$this->db->where('id',$id_producto); 
+    	$result = $this->db->update('productos');
+
+	  }  
 	
 	
 
