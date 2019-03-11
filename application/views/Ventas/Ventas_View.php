@@ -4,20 +4,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Ventas</title>
+  	<head>
+    	<title>Ventas</title>
 		<link href="<?php echo base_url(); ?>/assets/css/bootstrap.css" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-		<script type="text/javascript">
-		$(document).ready(function() {
-			setTimeout(function() {
-				$("#msj").fadeOut(1500);
-			},3000);
-		});
-		</script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
 	</head>
 
   <body>
@@ -60,7 +53,8 @@
 				<a class="btn btn-danger btnReiniciar" id="btnReiniciar" href="<?php echo base_url() . "Ventas/eliminar_all/" ?>">Cancelar Compra</a>
 				<br /><br />
 				
-				<a class="btn btn-primary" id="btnCredito" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Credito</a>
+				<a href="#ex1" rel="modal:open" id="btnCredito" class="btn btn-primary"> Pagar Credito </a>
+				<!--<a class="btn btn-primary" id="btnCredito" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Credito</a>-->
 			</form>
 
 			<br/>
@@ -138,7 +132,7 @@
 															}else{
 															echo "display:none";
 															}
-														?>>-
+														?>>
 												</a>
 											</td>
 
@@ -175,12 +169,90 @@
 
 					<?php }?>
 				</div>
+
+				<!-- Este es el modal generado por jQuery-->
+				<div id="ex1" class="modal" style="width: 40%;">
+					<div class="modal-content" style="height: 55ex;">
+						<div class="modal-header" style=" background-color: rgb(241, 196, 15);">
+							<h5 class="modal-title" id="verificarAdminLabel">Cerrar Caja</h5>
+							<a  id="btnCerrar" href="#" rel="modal:close"><i class="fas fa-times"></i></a>
+						</div>
+						<div class="modal-body" style="margin-top: 5%;">
+							<form action="#" method="post">
+								<div id="mensaje2">
+									<div id="msj2" style="display: none;" class="alert alert-danger">
+										hola carro.
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="idUser">Cedula Usuario</label>
+									<input class="form-control" type="text" name="idUser" id="idUser" required>
+								</div>
+								<div class="form-group">
+									<label for="montoCredito">Digite el monto a creditar</label>
+									<input class="form-control" type="text" name="montoCredito" id="montoCredito" required>
+								</div>
+								<button style="margin-top: 5%; width: 15%;" id="chequearAdmin" type="button" class="btn btn-primary" onclick="verficarAdmin()">Aceptar</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 		</div>
-		<!-- Scripts de acción al botón -->
+		<!--booststrap-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<!--Este script es para que oculte el mensaje de error numero 1 de cuando el producto no existe-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				setTimeout(function() {
+					$("#msj").fadeOut(1500);
+				},3000);
+			});
+		</script>
+		<!--Ajax-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<!-- jQuery Modal -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+		<!--Este script es para el modal-->
 		<script>
-		
-			
+			function CierraModal(){
+				//cierra el modal que es generado por jQuery
+				//esta es la clase del div la cual contiene todo el modal
+				//para saber donde aparece esta clase debe ir al navegador y entrar a esta pagina y inspeccionar y la vera
+				$('.jquery-modal').hide();
+			}
+
+			function verficarAdmin(){
+				let user = jQuery('#idUser').val();
+				let monto = jQuery('#montoCredito').val();
+				console.log(user);
+
+				if(user != "" && monto != ""){
+					jQuery.ajax({
+						type: "POST",
+						url: '<?php echo base_url();?>' + 'Usuarios/validarAdmin',
+						data: {pass: user},
+						success: function(data){
+							console.log(data);
+						}
+					});
+
+					$("#idUser").val('');
+					$("#montoCredito").val('');
+					CierraModal();
+					
+				}else{
+					$("#msj2").show();
+					
+					setTimeout(function() {
+						$("#msj2").fadeOut(1500);
+					},3000);
+				}
+			}
 		</script>
   </body>
 </html>

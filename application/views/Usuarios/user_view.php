@@ -2,7 +2,7 @@
         
         if(!isset($_SESSION['nombre'])){//comprueba si existe el nombre de usuario
 
-            redirect('Usuarios/login');
+            redirect('Usuarios/login'); 
         
         }
                 
