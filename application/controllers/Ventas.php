@@ -15,7 +15,7 @@ class Ventas extends CI_Controller {
   //envia la informacion a la vista
 	public function index(){
 		$data['productos'] = $this->Ventas_Model->ver_ventas();
-		$this->load->view("Ventas/Ventas_View", $data);
+		$this->load->view("Ventas/Ventas_View", $data); 
   }
   
   public function msj($mensaje){
