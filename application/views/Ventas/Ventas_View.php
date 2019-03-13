@@ -112,6 +112,13 @@
 											</td>
 
 											<td>
+												<?php 
+													echo "₡". $item['precio'];
+													$precio_array[] =  $item["precio"];
+												?>
+											</td>
+
+											<td>
 												<?php  
 												echo $item['cantidad'];
 												$cantidad_array[] =  $item["cantidad"];?>
@@ -125,15 +132,8 @@
 															}else{
 															echo "display:none";
 															}
-														?>>
+														?>>-
 												</a>
-											</td>
-
-											<td>
-												<?php 
-													echo "₡". $item['precio'];
-													$precio_array[] =  $item["precio"];
-												?>
 											</td>
 
 											<td>
@@ -181,7 +181,7 @@
 							<form action="#" method="post">
 								<div id="mensaje2">
 									<div id="msj2" style="display: none;" class="alert alert-danger">
-										hola carro.
+										
 									</div>
 								</div>
 								<div class="form-group">
@@ -232,26 +232,35 @@
 				console.log(user);
 
 				if(user != "" && monto != ""){
-					jQuery.ajax({
-						type: "POST",
-						url: '<?php echo base_url();?>' + 'Usuarios/validarAdmin',
-						data: {pass: user},
-						success: function(data){
-							console.log(data);
-						}
-					});
+					if(monto < 20000){
+						jQuery.ajax({
+							type: "POST",
+							url: '<?php echo base_url();?>' + 'Usuarios/validarAdmin',
+							data: {pass: user},
+							success: function(data){
+								console.log(data);
+							}
+						});
 
-					$("#idUser").val('');
-					$("#montoCredito").val('');
-					CierraModal();
-					
+						$("#idUser").val('');
+						$("#montoCredito").val('');
+						CierraModal();
+					}else{
+						mensaje("El monto debe ser menor o igual a los ¢20.000");
+					}
+
 				}else{
-					$("#msj2").show();
-					
-					setTimeout(function() {
-						$("#msj2").fadeOut(1500);
-					},3000);
+					mensaje("Debe completar los dos campos.");
 				}
+			}
+
+			function mensaje(msj){
+				$("#msj2").show();
+				$("#msj2").html(msj);
+
+				setTimeout(function() {
+					$("#msj2").fadeOut(1500);
+				},3000);
 			}
 		</script>
   </body>

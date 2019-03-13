@@ -60,10 +60,9 @@
 
                                     <td><?php echo $nombre[$i];?></td>
 
+                                    <td><?php echo $precio[$i]?></td>
 
                                     <td><?php echo $cantidad[$i]?></td>
-                                    
-                                    <td><?php echo $precio[$i]?></td>
 
                                     <td><?php $subtotal = ($cantidad[$i] * $precio[$i]);
                                         
