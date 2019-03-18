@@ -139,12 +139,6 @@ class Usuarios extends CI_Controller {
 		//. " " . $accion1
 		
 		echo $user . "  " . $accion;
-	}
-
-	public function validarAdmin(){
-		$pass = $this->input->post("pass");
-		echo "carro78 " . $pass;
-  }
-
+	}	
 }
 ?>

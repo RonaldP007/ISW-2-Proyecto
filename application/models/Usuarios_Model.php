@@ -129,6 +129,7 @@ Class Usuarios_Model extends CI_model{
 
   }
 
+  //esta es para cambiar varlor de caja
   public function validarAdmin(){
     
   }

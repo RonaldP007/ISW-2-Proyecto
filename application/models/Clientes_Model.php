@@ -121,7 +121,5 @@ Class Clientes_Model extends CI_model{
 		$this->db->delete("clientes", array("cedula" => $cedula));
 	
 	}
-	
-
 }
 ?>

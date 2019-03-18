@@ -18,7 +18,7 @@ Class Facturas_Model extends CI_model{
 	//registra la informacion de una nueva factura
 	public function new_factura($id_user, $fecha, $productos_nombres, $precios, $cantidades, $totales){
 
-        $this->id_user = $id_user;
+        $this->id_user = $id_user; 
         $this->fecha = $fecha;
         $this->productos_nombres = $productos_nombres;
         $this->precios = $precios;

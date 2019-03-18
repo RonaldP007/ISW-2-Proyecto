@@ -122,7 +122,7 @@ class Ventas extends CI_Controller {
     }else{*///si no hay problema realiza la compra
 			
 			//Crea la factura de la compra
-     // foreach($total as $unid){
+     // foreach($total as $unid){ 
         //$total_u = $unid["totales"];
      // }
       $this->Facturas_Model->new_factura($_SESSION['cedula'], date("Y-m-d"), implode(";",$nombre_array), implode(";", $precio_array), implode(";", $cantidad_array), $total);
