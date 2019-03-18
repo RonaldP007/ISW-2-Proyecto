@@ -14,10 +14,10 @@ class Creditos extends CI_Controller {
   public function comprobarCreditos(){
     $usuario = $this->input->post("id");
     $estado = $this->Fact_Credito_Model->estadoCredito($usuario);
-    if($estado == "true"){
-      echo "r" ." ". $estado;
+    if($estado == 1){
+      echo 1;
     }else{
-      echo "e";
+      echo 0;
     }
   }
 

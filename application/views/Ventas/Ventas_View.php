@@ -266,7 +266,7 @@
 			let limite;
 			let tipo_mjs;
 			let borrar;
-			let estado_credito;
+			let estado_credito = 0;
 
 			function btnVerificar() {
 				$("#chequearAdmin").show();
@@ -294,16 +294,16 @@
 						type: "post",
 						url: '<?php echo base_url(); ?>' + 'Creditos/comprobarCreditos',
 						data:{id:iduser},
-						success: function(data){
-							estado_credito = "";
-							estado_credito = data[0];
+						success: function(dato){
+							//estado_credito = "";
+							estado_credito = dato[0];
 							console.log(estado_credito);
 						}
 					})
 					//falta corregir
-					if(estado_credito != "r"){
+					if(estado_credito == "1"){
 						mensaje("El cliente tiene un credito aprobado, debe pagar para obtene uno nuevo.")
-						estado_credito = "";
+						estado_credito = 0;
 					}else{
 						jQuery.ajax({
 							type: "post",
@@ -320,6 +320,7 @@
 								if(fiador == "f"){
 									mensaje("No existe el usuario.")
 								}
+								estado_credito = 0;
 							}
 						})
 					}

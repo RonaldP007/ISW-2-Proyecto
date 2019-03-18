@@ -40,13 +40,12 @@ Class Fact_Credito_Model extends CI_model{
         $query=$this->db->get();
     
         if($query->num_rows()>0){
-          $valor = "true";
+          $valor = 1;
           return $valor;
     
         }else{
-          $valor = "false";
+          $valor = 0;
           return $valor;
-    
         }
     }
 }
