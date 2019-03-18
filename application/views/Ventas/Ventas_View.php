@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+		<script> let comprueba = false; </script>
 	</head>
 
   <body>
@@ -53,7 +54,7 @@
 				<a class="btn btn-danger btnReiniciar" id="btnReiniciar" href="<?php echo base_url() . "Ventas/eliminar_all/" ?>">Cancelar Compra</a>
 				<br /><br />
 				
-				<a href="#ex1" rel="modal:open" id="btnCredito" class="btn btn-primary"> Pagar Credito </a>
+				<a href="#ex1" rel="modal:open" id="btnCredito" class="btn btn-primary" onclick="btnVerificar()"> Pagar Credito </a>
 				<!--<a class="btn btn-primary" id="btnCredito" href="<?php //echo base_url() . "Ventas/suma/" . $id ?>">Pagar Credito</a>-->
 			</form>
 
@@ -68,6 +69,7 @@
 				<div class="panel-body detalle-producto" id="productos">
 
 					<?php if($productos != false){?>
+						<script> comprueba = true; </script>
 						<table class="table">
 
 							<?php 
@@ -78,7 +80,7 @@
 								$precio_array = array();
 								$subtotal_array = array();
 									
-							?>
+							?> 
 
 							<thead>
 								<tr>
@@ -89,6 +91,16 @@
 								<th>SubTotal</th>
 								</tr>
 							</thead>
+
+							<script> 
+								let id_producto = []; 
+								let nombre_pro = [];
+								let precio_pro = [];
+								let cantidad_pro = [];
+								let subtotal_pro = [];
+								let total_pro = [];
+								let contador = 0;
+							</script>
 
 							<tbody>
 								<?php
@@ -102,6 +114,9 @@
 													echo $item['id_producto'];
 													$id_producto_array[] =  $item['id_producto'];
 												?>
+												<script> 
+													id_producto[contador] = <?php echo $item["id_producto"];?>; 
+												</script>
 											</td>
 
 											<td>
@@ -109,6 +124,9 @@
 													echo $item['nombre'];
 													$nombre_array[] = $item["nombre"];
 												?>
+												<script> 
+													nombre_pro[contador] = "<?php echo $item["nombre"];?>"; 
+												</script>
 											</td>
 
 											<td>
@@ -116,12 +134,19 @@
 													echo "₡". $item['precio'];
 													$precio_array[] =  $item["precio"];
 												?>
+												<script> 
+													precio_pro[contador] = <?php echo $item["precio"];?>; 
+												</script>
 											</td>
 
 											<td>
 												<?php  
-												echo $item['cantidad'];
-												$cantidad_array[] =  $item["cantidad"];?>
+													echo $item['cantidad'];
+													$cantidad_array[] =  $item["cantidad"];
+												?>
+												<script> 
+													cantidad_pro[contador] = <?php echo $item["cantidad"];?>; 
+												</script>
 
 												<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/suma/" . $id ?>">+</a>
 												<a class="btn btn-sm" href="<?php echo base_url() . "Ventas/resta/" . $id ?>" 
@@ -143,9 +168,17 @@
 													$subtotal_array[] =  $total;
 													$totales = $totales +$total;
 												?>
+												<script> 
+													subtotal_pro[contador] = <?php echo $total;?>; 
+													total_pro = <?php echo $totales;?>;
+												</script>
+												
 											</td>
 
 											<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Ventas/eliminar/" . $id ?>"><i class="far fa-trash-alt"></i></a></td>
+											<script>
+												contador = contador + 1; 
+											</script>
 										</tr>
 								<?php }?>
 
@@ -153,7 +186,12 @@
 									$matriz = [$id_producto_array, $nombre_array, $cantidad_array, $precio_array, $subtotal_array,$totales];
 									$array_url = serialize($matriz);
 									$array_url = urlencode($array_url);  
-								?>  
+								?> 
+
+								<!--<script> 
+									//let producto = ;
+									let datos1 = new array(<?php// print_r($id_producto_array);?>); 
+								</script> -->
 
 								<a class="btn btn-primary" id="btnPagar"  href="<?php echo base_url() . "Ventas/comprar/" . $array_url?>">Pagar Contado</a> 
 
@@ -174,7 +212,7 @@
 				<div id="ex1" class="modal" style="width: 40%;">
 					<div class="modal-content" style="height: 55ex;">
 						<div class="modal-header" style=" background-color: rgb(241, 196, 15);">
-							<h5 class="modal-title" id="verificarAdminLabel">Cerrar Caja</h5>
+							<h5 class="modal-title" id="verificarAdminLabel">Pagar a Credito</h5>
 							<a  id="btnCerrar" href="#" rel="modal:close"><i class="fas fa-times"></i></a>
 						</div>
 						<div class="modal-body" style="margin-top: 5%;">
@@ -186,13 +224,14 @@
 								</div>
 								<div class="form-group">
 									<label for="idUser">Cedula Usuario</label>
-									<input class="form-control" type="text" name="idUser" id="idUser" required>
+									<input class="form-control" type="number" name="idUser" id="idUser" required>
 								</div>
-								<div class="form-group">
+								<div class="form-group" id="div_monto" style="display: none;">
 									<label for="montoCredito">Digite el monto a creditar</label>
-									<input class="form-control" type="text" name="montoCredito" id="montoCredito" required>
+									<input class="form-control" type="number" name="montoCredito" id="montoCredito" required>
 								</div>
-								<button style="margin-top: 5%; width: 15%;" id="chequearAdmin" type="button" class="btn btn-primary" onclick="verficarAdmin()">Aceptar</button>
+								<button style="margin-top: 5%; width: 15%; display: none;" id="chequearAdmin" type="button" class="btn btn-primary" onclick="verficarUsuario()">Verificar</button>
+								<button style="margin-top: 5%; width: 20%; display: none;" id="guardarCompra" type="button" class="btn btn-primary" onclick="registrarCompra()">Registrar Credito</button>
 							</form>
 						</div>
 					</div>
@@ -219,42 +258,133 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 		<!--Este script es para el modal-->
 		<script>
-			function CierraModal(){
+			//variables
+			let fiador;
+			let user;
+			let monto;
+			let iduser;
+			let limite;
+			let tipo_mjs;
+			let borrar;
+			let estado_credito;
+
+			function btnVerificar() {
+				$("#chequearAdmin").show();
+				//oculta el div donde se digita el monto a fiar
+				$("#div_monto").hide();
+				//oculta el boton de registro credito
+				$("#guardarCompra").hide();
+				//coloca el valor en blanco
+				$("#idUser").val('');
+			}
+
+			function CierraModal() {
 				//cierra el modal que es generado por jQuery
 				//esta es la clase del div la cual contiene todo el modal
 				//para saber donde aparece esta clase debe ir al navegador y entrar a esta pagina y inspeccionar y la vera
 				$('.jquery-modal').hide();
 			}
 
-			function verficarAdmin(){
-				let user = jQuery('#idUser').val();
-				let monto = jQuery('#montoCredito').val();
-				console.log(user);
+			//esta funcion sirve para validar si existe el cliente.
+			function verficarUsuario() {
+				iduser = jQuery('#idUser').val();
 
-				if(user != "" && monto != ""){
-					if(monto < 20000){
-						jQuery.ajax({
-							type: "POST",
-							url: '<?php echo base_url();?>' + 'Usuarios/validarAdmin',
-							data: {pass: user},
-							success: function(data){
-								console.log(data);
-							}
-						});
-
-						$("#idUser").val('');
-						$("#montoCredito").val('');
-						CierraModal();
+				if(iduser != ""){
+					jQuery.ajax({
+						type: "post",
+						url: '<?php echo base_url(); ?>' + 'Creditos/comprobarCreditos',
+						data:{id:iduser},
+						success: function(data){
+							estado_credito = "";
+							estado_credito = data[0];
+							console.log(estado_credito);
+						}
+					})
+					//falta corregir
+					if(estado_credito != "r"){
+						mensaje("El cliente tiene un credito aprobado, debe pagar para obtene uno nuevo.")
+						estado_credito = "";
 					}else{
-						mensaje("El monto debe ser menor o igual a los ¢20.000");
+						jQuery.ajax({
+							type: "post",
+							url: '<?php echo base_url();?>' + 'Clientes/verificarCliente',
+							data:{id:iduser},
+							success: function(data){
+								fiador = data[0];//obtengo el valor del fiador
+								if(fiador != "" && fiador != null && fiador != "f"){
+									//console.log(fiador);
+									$(".form-group").show();
+									$("#guardarCompra").show();
+									$("#chequearAdmin").hide();
+								}
+								if(fiador == "f"){
+									mensaje("No existe el usuario.")
+								}
+							}
+						})
 					}
-
-				}else{
-					mensaje("Debe completar los dos campos.");
 				}
 			}
 
-			function mensaje(msj){
+			function registrarCompra() {
+				user = jQuery('#idUser').val();
+				monto = jQuery('#montoCredito').val();
+				//console.log(user);
+				if(comprueba){
+					if(user != "" && monto != ""){
+						if(fiador == "0"){
+							limite = monto <= 20000; 
+							tipo_mjs = "sin";
+						}else{
+							limite = monto >= 5;
+							tipo_mjs = "con";
+						}
+
+						if(limite){
+							if(monto > 0 && monto <= total_pro){
+								jQuery.ajax({
+									type: "post",
+									url: '<?php echo base_url() . 'Creditos/guardarCredito'?>',
+									data: {
+										user: user,
+										monto1: monto, 
+										id_producto1: id_producto,
+										nombre_pro1: nombre_pro,
+										precio_pro1: precio_pro,
+										cantidad_pro1: cantidad_pro,
+										subtotal_pro1: subtotal_pro,
+										total_pro1: total_pro
+									},
+									success: function(data){
+										$("#idUser").val('');
+										$("#montoCredito").val('');
+										CierraModal();
+										location.reload();
+									}
+								})
+							}else{
+								mensaje("El monto no puede superar el total de la compra ni ser ₡0.");
+							}
+						}else{
+							if(tipo_mjs == "con"){
+								mensaje("El monto debe ser mayor o igual a los ₡5");
+							}
+							else{
+								mensaje("El monto debe ser menor o igual a los ₡20.000");
+							}
+							
+						}
+
+					}else{
+						mensaje("Debe completar los dos campos.");
+					}
+				}else{
+					mensaje("Debe agregar productos a la tabla.");
+				}
+			}
+
+			//esta funcion es para notificar los errores
+			function mensaje(msj) {
 				$("#msj2").show();
 				$("#msj2").html(msj);
 
