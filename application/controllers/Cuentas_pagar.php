@@ -7,7 +7,7 @@ class Cuentas_pagar extends CI_Controller {
 
     parent::__construct();
     $this->load->model('Cuentas_pagar_Model');
-		$this->load->model('Proveedores_Model', 'proveedor');
+	$this->load->model('Proveedores_Model', 'proveedor');
 
   } 
 
