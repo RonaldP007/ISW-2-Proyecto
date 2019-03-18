@@ -6,7 +6,7 @@ class Clientes extends CI_Controller {
   public function __construct(){
 
     parent::__construct();
-    $this->load->model('Clientes_Model');
+    $this->load->model('Clientes_Model');  
 
 
   } 
@@ -47,7 +47,7 @@ class Clientes extends CI_Controller {
         $this->input->post("apellidos"),
         $this->input->post("telefono"),
 				$this->input->post("direccion"),
-				$this->input->post("fiador")
+				$this->input->post("fiador") 
         );
         redirect("Clientes/getClientes");
    
@@ -87,8 +87,19 @@ class Clientes extends CI_Controller {
 	 
 	}
 
-	
-
+  //verifica usuario para ver si existe y tambien si tiene fiador
+  public function verificarCliente(){
+    $valorusuario = array();
+    $idusuario = $this->input->post("id");
+		$valorusuario = $this->Clientes_Model->cliente($idusuario);
+		if($valorusuario){
+      foreach($valorusuario as $item){ $fiador = $item['id_fiador']; }
+      echo $fiador;
+		}
+		else{
+      echo "f"; 
+		}
+	}
 
 }
 ?>
