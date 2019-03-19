@@ -11,16 +11,6 @@ class Creditos extends CI_Controller {
     $this->load->model('Ventas_Model');
   }
 
-  public function comprobarCreditos(){
-    $usuario = $this->input->post("id");
-    $estado = $this->Fact_Credito_Model->estadoCredito($usuario);
-    if($estado == 1){
-      echo 1;
-    }else{
-      echo 0;
-    }
-  }
-
   public function guardarCredito(){
     $cliente = $this->input->post("user");// id cliente
     $monto = $this->input->post("monto1");//monto a creditar
@@ -44,9 +34,5 @@ class Creditos extends CI_Controller {
     }
 
     $this->Ventas_Model->eliminar_all();
-    /*$valor = $this->Ventas_Model->ver_ventas();
-    if($valor != true){
-      echo "carro malo";
-    }*/
   }
 }
