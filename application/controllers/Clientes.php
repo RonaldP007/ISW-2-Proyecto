@@ -7,7 +7,7 @@ class Clientes extends CI_Controller {
 
     parent::__construct();
     $this->load->model('Clientes_Model');  
-
+    $this->load->model('Fact_Credito_Model');
 
   } 
 
@@ -87,19 +87,40 @@ class Clientes extends CI_Controller {
 	 
 	}
 
-  //verifica usuario para ver si existe y tambien si tiene fiador
+  //verifica usuario para ver si existe, tambien si tiene fiador y creditos aprobados.
   public function verificarCliente(){
     $valorusuario = array();
+    $estado = array();
+    $resultado = "nada";
+    $cont_fiador;
+    $valor = "";
     $idusuario = $this->input->post("id");
-		$valorusuario = $this->Clientes_Model->cliente($idusuario);
-		if($valorusuario){
-      foreach($valorusuario as $item){ $fiador = $item['id_fiador']; }
-      echo $fiador;
-		}
-		else{
-      echo "f"; 
-		}
-	}
+    $valorusuario = $this->Clientes_Model->cliente($idusuario);
+    $estado = $this->Fact_Credito_Model->estadoCredito($idusuario);//este verifica el estado de creditos
+
+    if($valorusuario){//verifica si el usuario se encuentra registrado.
+
+      //este foreach recorer la lista para ver si el estado de la facura es pendiente o esta paga
+      foreach($estado as $item){ $valor = $item["estado_factura"]; }
+      if($valor == "p"){
+        $resultado = "pendiente";
+      }
+
+      if($resultado != "pendiente"){
+        foreach($valorusuario as $item){ $fiador = $item['id_fiador']; } //este foreach recorer la lista para ver si el cliente tiene fiador
+
+        if($fiador != "0"){$cont_fiador = "con_fia";}else{$cont_fiador = "sin_fia";}
+
+        echo $cont_fiador;
+
+      }else{
+        echo "p"; //indica que el credito esta pendiente
+      }
+    }
+    else{
+      echo "f"; //indica que el usuario no esta registrado 
+    }
+  }
 
 }
 ?>
