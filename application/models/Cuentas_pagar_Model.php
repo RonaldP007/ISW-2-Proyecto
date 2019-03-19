@@ -69,5 +69,34 @@ Class Cuentas_pagar_Model extends CI_model{
 	}
 	
 
+
+	//Cambia la informacion de una cuenta a pagar
+	public function update_cuenta($id){
+		$data=array(
+			'monto' => $this->input->post('monto'),
+			'fecha_pago'=> $this->input->post('fecha_pago'),
+		);
+		
+		
+    $this->db->where('id',$id);
+    return $this->db->update('cuentasxpagar',$data);
+          
+  }
+
+
+  // Carga la informacion de una cuenta a pagar
+	public function cuenta($id){
+
+		$this->db->select('*');
+		$this->db->from('cuentasxpagar');
+		$this->db->where('id',$id);
+	
+		$result = $this->db->get();
+	
+		return $result->result_array();
+	
+		}
+	
+
 }
 ?>

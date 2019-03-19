@@ -80,6 +80,23 @@ class Cuentas_pagar extends CI_Controller {
 		}
 
 	}
+
+
+	//edita una cuenta a pagar
+	public function editar($id){
+
+		$this->Cuentas_pagar_Model->update_cuenta($id); 
+		redirect("Cuentas_pagar/getCuentas_pagar");
+		
+	}
 	
+
+	 //envia la informacion a la vista de edicion
+	 public function cuenta($id){
+
+		$data['cuenta'] = $this->Cuentas_pagar_Model->cuenta($id);
+		$this->load->view("Cuentas_pagar/Cuentas_pagar_Edit", $data);
+	
+	}
 }
 ?>
