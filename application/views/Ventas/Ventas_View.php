@@ -265,8 +265,8 @@
 			let iduser;
 			let limite;
 			let tipo_mjs;
-			let borrar;
-			let estado_credito = 0;
+			let estadocredito = "";
+			let estado = null;
 
 			function btnVerificar() {
 				$("#chequearAdmin").show();
@@ -290,40 +290,27 @@
 				iduser = jQuery('#idUser').val();
 
 				if(iduser != ""){
+					
 					jQuery.ajax({
 						type: "post",
-						url: '<?php echo base_url(); ?>' + 'Creditos/comprobarCreditos',
+						url: '<?php echo base_url();?>' + 'Clientes/verificarCliente',
 						data:{id:iduser},
-						success: function(dato){
-							//estado_credito = "";
-							estado_credito = dato[0];
-							console.log(estado_credito);
-						}
-					})
-					//falta corregir
-					if(estado_credito == "1"){
-						mensaje("El cliente tiene un credito aprobado, debe pagar para obtene uno nuevo.")
-						estado_credito = 0;
-					}else{
-						jQuery.ajax({
-							type: "post",
-							url: '<?php echo base_url();?>' + 'Clientes/verificarCliente',
-							data:{id:iduser},
-							success: function(data){
-								fiador = data[0];//obtengo el valor del fiador
-								if(fiador != "" && fiador != null && fiador != "f"){
-									//console.log(fiador);
-									$(".form-group").show();
-									$("#guardarCompra").show();
-									$("#chequearAdmin").hide();
-								}
-								if(fiador == "f"){
-									mensaje("No existe el usuario.")
-								}
-								estado_credito = 0;
+						success: function(data){
+							fiador = data;//obtengo el valor del fiador
+							if(fiador != "" && fiador != null && fiador != "f" && fiador != "p"){
+								//console.log(fiador);
+								$(".form-group").show();
+								$("#guardarCompra").show();
+								$("#chequearAdmin").hide();
 							}
-						})
-					}
+							if(fiador == "f"){
+								mensaje("No existe el usuario.")
+							}
+							if(fiador == "p"){
+								mensaje("El usuario posee un credito.")
+							}
+						}
+					})	
 				}
 			}
 
@@ -333,10 +320,11 @@
 				//console.log(user);
 				if(comprueba){
 					if(user != "" && monto != ""){
-						if(fiador == "0"){
+						if(fiador == "sin_fia"){
 							limite = monto <= 20000; 
 							tipo_mjs = "sin";
-						}else{
+						}
+						if(fiador == "con_fia"){
 							limite = monto >= 5;
 							tipo_mjs = "con";
 						}
@@ -371,7 +359,7 @@
 								mensaje("El monto debe ser mayor o igual a los ₡5");
 							}
 							else{
-								mensaje("El monto debe ser menor o igual a los ₡20.000");
+								mensaje("El monto debe ser menor o igual a los ₡20.000, ya que no tiene fiador.");
 							}
 							
 						}
