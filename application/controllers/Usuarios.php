@@ -8,6 +8,7 @@ class Usuarios extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('Usuarios_Model');
+		$this->load->model('Cuentas_pagar_Model');
 		$this->load->library('session');
 	
 	  } 
@@ -87,6 +88,50 @@ class Usuarios extends CI_Controller {
 	 
 	}
 
+
+
+
+
+
+	public function fechas(){
+		date_default_timezone_set("America/Costa_Rica");
+		$array_fechas = $this->Cuentas_pagar_Model->ver_info_fecha();
+		//var_dump($array_fechas);
+		$contador = 0;
+		if($array_fechas[0] != false){
+			$hoy = date("Y-m-d");
+			//echo $hoy;
+			$date1 = new DateTime($hoy);	 
+			
+			foreach($array_fechas as $valores){
+				$date2 = new DateTime($valores["fecha_pago"]);
+				$diff = $date1->diff($date2);
+				$dias = $diff->days;
+				if($dias <= 5){
+					$contador = $contador + 1;
+				}
+			}
+			//echo $contador;
+			$data['info'] = $contador;
+			$this->load->view("header_user");
+			$this->load->view("Usuarios/user_view", $data);
+			$this->load->view("footer"); 
+		}else{
+			$data['info'] = $contador;
+			$this->load->view("header_user");
+			$this->load->view("Usuarios/user_view", $data);
+			$this->load->view("footer"); 
+		}
+
+	}
+
+
+
+
+
+
+	
+
 	//realiza el logueo de un usuario
 	public function login_user(){
 		$user_login=array(
@@ -96,14 +141,16 @@ class Usuarios extends CI_Controller {
 		);
 	
 		$data=$this->Usuarios_Model->login_user($user_login['cedula'],$user_login['pass']);
+		//$info['datos'] = fechas();
 		
 		if($data){
 	
 		  $this->session->set_userdata('cedula',$data['cedula']);
 		  $this->session->set_userdata('nombre',$data['nombre']);
-		  $this->session->set_userdata('rol',$data['rol']);
-	
-		  redirect("Usuarios/user_view");
+			$this->session->set_userdata('rol',$data['rol']);
+			
+			//$this->load->view("Usuarios/user_view", $info);
+		  redirect("Usuarios/fechas");
 		}
 		else{  
 		  $this->session->set_flashdata('error_msg', 'Datos Incorrectos');

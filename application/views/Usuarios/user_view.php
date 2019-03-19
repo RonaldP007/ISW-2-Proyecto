@@ -19,6 +19,7 @@
 					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li>
                     <li><a href= "<?php echo base_url('Cuentas_pagar/getCuentas_pagar');?>">Cuentas</a></li>
 					<li><a href= "<?php echo base_url('Facturas/index');?>">Facturas</a></li>
+					<li><a href= "<?php echo base_url('Cuentas_pagar/fechas');?>">Cuentas fechas</a></li>
                 <ul>
                 <?php }else{ ?>
                     <ul>
@@ -49,9 +50,34 @@
                     <?php if($_SESSION['rol'] == 'u'){ ?> 
                         
                     <?php }else{ ?>
-                        <?php
-                          
-                        ?>
+                        
+						<div class="">
+
+							<?php if(!isset($info)){
+
+							}else{
+
+
+								if($info == 0){
+									
+								echo '<p>'. "No tiene pagos proximos con los proveedores" .'</p>';
+								//var_dump($info);
+								}
+
+								if($info == 1){
+									
+									echo '<p>'. "Se acerca el pago de ". $info. " cuenta pendiente con un proveedor" .'</p>';
+								
+								}
+								
+								if($info > 1){
+									
+									echo '<p>'. "Se acerca el pago de ". $info. " cuentas pendientes con los proveedores" .'</p>';
+									
+								}
+							}?>
+						</div>
+                       
                     <?php } ?>
 
                     <!-- Link to open the modal 

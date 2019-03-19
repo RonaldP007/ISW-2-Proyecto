@@ -49,6 +49,24 @@ Class Cuentas_pagar_Model extends CI_model{
 		$this->db->delete("cuentasxpagar", array("id" => $id));
 	
 	}
+
+
+
+	//Busca la informacion de las fechas de  pagos
+	public function ver_info_fecha(){
+	
+		$this->db->select('fecha_pago');
+		$this->db->from('cuentasxpagar');
+	
+		$result = $this->db->get();
+	
+		if(!$result->num_rows() == 1){
+	
+			return false;
+		}
+	
+		return $result->result_array();
+	}
 	
 
 }

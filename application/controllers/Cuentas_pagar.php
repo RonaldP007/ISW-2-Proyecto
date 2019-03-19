@@ -7,7 +7,7 @@ class Cuentas_pagar extends CI_Controller {
 
     parent::__construct();
     $this->load->model('Cuentas_pagar_Model');
-	$this->load->model('Proveedores_Model', 'proveedor');
+		$this->load->model('Proveedores_Model', 'proveedor');
 
   } 
 
@@ -43,13 +43,42 @@ class Cuentas_pagar extends CI_Controller {
 	   
 	
 	}
-		
+	
+
 	//borra una cuenta
 	public function eliminar($id){
 	
 		$this->Cuentas_pagar_Model->eliminar($id);
 		redirect("Cuentas_pagar/getCuentas_pagar");
 		
+	}
+
+
+	public function fechas(){
+		date_default_timezone_set("America/Costa_Rica");
+		$array_fechas = $this->Cuentas_pagar_Model->ver_info_fecha();
+		//var_dump($array_fechas);
+		if($array_fechas[0] != false){
+			$hoy = date("Y-m-d");
+			$contador = 0;
+			//echo $hoy;
+			$date1 = new DateTime($hoy);	 
+			
+			foreach($array_fechas as $valores){
+				$date2 = new DateTime($valores["fecha_pago"]);
+				$diff = $date1->diff($date2);
+				$dias = $diff->days;
+				if($dias <= 5){
+					$contador = $contador + 1;
+				}
+			}
+			//echo $contador;
+			return $contador;
+			
+		}else{
+			return false;
+		}
+
 	}
 	
 }
