@@ -63,7 +63,7 @@
 
 													<?php if(count($fiadores)>0):?>
 														<?php foreach($fiadores as $fiador):?>
-															<option value="<?php echo $fiador['cedula'];?>" ><?php echo $fiador['cedula'];?></option>
+															<option value="<?php echo $fiador['cedula'];?>" <?php if($fiador['cedula'] == $item["id_fiador"]){echo "selected";} ?> ><?php echo $fiador['cedula'];?></option>
 														<?php endforeach;?>
 													<?php endif;?>
 												</select>
