@@ -168,7 +168,7 @@ class Usuarios extends CI_Controller {
 	} 
 
 	public function cambioCaja(){
-		$usuario = $this->input->post('usuario');
+		$usuario = $this->input->post('usuario'); 
 		
 		$user_admin = array(
 			'cedula'=>$this->input->post('admin'),
@@ -177,13 +177,22 @@ class Usuarios extends CI_Controller {
 
 		$datos = $this->Usuarios_Model->login_user($user_admin['cedula'],$user_admin['pass']);
 		if($datos){
-			$update = $this->Usuarios_Model->updateCaja($usuario);
-			if($update){
-				echo "exito";
+
+			if($datos["rol"] === "a"){
+				$update = $this->Usuarios_Model->updateCaja($usuario);
+				if($update){
+					echo $_SESSION['caja'] = "0";
+				}
+				else{
+					echo "change_failure";
+				}
 			}
-			else{
-				echo "fallo";
+			elseif($datos["rol"] === "u"){
+				echo "admin";
 			}
+			
+		}else{
+			echo "fail_user";
 		}
 
 	}	
