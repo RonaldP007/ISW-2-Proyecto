@@ -124,9 +124,11 @@ class Ventas extends CI_Controller {
 			//Crea la factura de la compra
      // foreach($total as $unid){ 
         //$total_u = $unid["totales"];
-     // }
-      $this->Facturas_Model->new_factura($_SESSION['cedula'], date("Y-m-d"), implode(";",$nombre_array), implode(";", $precio_array), implode(";", $cantidad_array), $total);
-      
+		 // }
+		 	date_default_timezone_set("America/Costa_Rica");
+		 	$hoy = date("Y-m-d");
+      $this->Facturas_Model->new_factura($_SESSION['cedula'], $hoy, implode(";",$nombre_array), implode(";", $precio_array), implode(";", $cantidad_array), $total);
+		
       //cambia el estado de los productos del carrito y rebaja el stock de los productos
       for($i = 0; $i < count($id_producto_array);$i++){
        // $result = $this->Carrito_model->cambiar_estado($id_car_array[$i]);
