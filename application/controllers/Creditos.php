@@ -60,7 +60,10 @@ class Creditos extends CI_Controller {
       $total_factura = $item["total_factura"];//total_factura
     }
 
-    $insert = $this->Facturas_Model->new_factura($usuario, date("Y-m-d"), $productos, $precios_producto, $cantidades_producto, $total_factura);
+    date_default_timezone_set("America/Costa_Rica");
+		$hoy = date("Y-m-d");
+
+    $insert = $this->Facturas_Model->new_factura($usuario, $hoy, $productos, $precios_producto, $cantidades_producto, $total_factura);
     if($insert){
       $delete = $this->Fact_Credito_Model->deleteCredito($idFact);
       if($delete){
