@@ -110,7 +110,8 @@ Class Usuarios_Model extends CI_model{
       'nombre' => $this->input->post('nombre'),
       'apellidos'=> $this->input->post('apellidos'),
       'telefono'=> $this->input->post('telefono'),
-      'direccion'=> $this->input->post('direccion')
+      'direccion'=> $this->input->post('direccion'),
+      'caja_activa'=> $this->input->post('opcionCaja')
     );
 
     if($cedula==0){
@@ -130,8 +131,11 @@ Class Usuarios_Model extends CI_model{
   }
 
   //esta es para cambiar varlor de caja
-  public function validarAdmin(){
+  public function updateCaja($idUser){
+    $this->db->where('cedula', $idUser);
+    $this->db->set('caja_activa', "0");
     
+    return $this->db->update('usuarios');
   }
 }
 
