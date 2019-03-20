@@ -19,6 +19,7 @@
 					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li>
                     <li><a href= "<?php echo base_url('Cuentas_pagar/getCuentas_pagar');?>">Cuentas</a></li>
 					<li><a href= "<?php echo base_url('Facturas/index');?>">Facturas</a></li>
+                    <li><a href= "<?php echo base_url('Creditos/fact_credito');?>">Facturas Creditos</a></li>  
 					
                 <ul>
                 <?php }else{ ?>
