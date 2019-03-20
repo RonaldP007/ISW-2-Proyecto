@@ -7,7 +7,7 @@ class Facturas extends CI_Controller {
 
 		parent::__construct();
 		$this->load->model('Facturas_Model');
-		$this->load->model('Ventas_Model');
+		$this->load->model('Ventas_Model'); 
 	
 	}
 

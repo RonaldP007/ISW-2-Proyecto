@@ -43,4 +43,46 @@ Class Fact_Credito_Model extends CI_model{
 
       return $query->result_array();
   }
+
+  // extrae la informacion de las facturas de credito
+  public function ver_facturas(){
+
+    $this->db->select('fc.*, cli.cedula, cli.nombre');
+    $this->db->from('factura_credito fc');
+    $this->db->join('clientes cli', 'fc.id_cliente_credito = cli.cedula');
+
+    $result = $this->db->get();
+
+    if(!$result->num_rows() == 1){
+
+        return false;
+    }
+
+    return $result->result_array();
+  }
+
+  //Busca la informacion de una factura de credito
+	public function ver_info_factura($id){
+	
+    $this->db->select('*');
+    $this->db->from('factura_credito');
+    $this->db->where('id_factura',$id);
+  
+    $result = $this->db->get();
+  
+    if(!$result->num_rows() == 1){
+  
+      return false;
+    }
+  
+    return $result->result_array();
+  }
+
+  //elimina un credito de un cliente
+  public function deleteCredito($id_fac_Credito){
+    $this->db->where('id_factura', $id_fac_Credito);
+    
+    return $this->db->delete('factura_credito');
+  }
+
 }
