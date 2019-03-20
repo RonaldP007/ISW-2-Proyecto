@@ -26,12 +26,27 @@
                     <ul>
                     <li><a href= "<?= base_url('Clientes/getClientes')?>">Clientes</a></li>
                     <li><a href= "<?= base_url('Productos/getProductos') ?>">Productos</a></li>
-					<li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li></li>
-					<li><a href= "<?= base_url('Ventas/index')?>">Ventas</a></li>
+                    <li><a href= "<?php echo base_url('Fiadores/getFiadores');?>">Fiadores</a></li></li>
+                    <?php if($_SESSION['caja'] == "1"): ?>
+                        <li><a href= "<?= base_url('Ventas/index')?>">Ventas</a></li>
+                    <?php else : ?>
+                        <li><a href= "#" onclick="mensaje()">Ventas</a></li>
+                    <?php endif ?>
                     <ul>
             <?php } ?>
         </nav>
 
+        <script>
+            //es para notificar a el usuario de no tiene acceso a ventas
+            function mensaje() {
+                swal({
+                    title: "No tiene acceso a ventas.",
+                    text: "Has click en el boton.",
+                    icon: "warning",
+                    button: "OK",
+                });
+            }
+        </script>
 
         <!--Contenido-->
         <div id= "contenido" > 
@@ -41,7 +56,7 @@
                 <div id= "login" class="aside">
                     <h3 id="bienvenida" >Bienvenido <?php echo " " . $_SESSION['nombre'];?></h3> 
 
-                    <?php if($_SESSION['rol'] == 'u') :?> 
+                    <?php if($_SESSION['rol'] == 'u' && $_SESSION['caja'] == "1") :?> 
                         <!--Llama a el modal-->
                         <a href="#ex1" rel="modal:open" type="button" class="btn btn-primary btnCloseCaja"> Cerrar Caja </a>
                     <?php endif; ?>
@@ -94,9 +109,14 @@
                             <div class="modal-body">
                                 <form action="#" method="post">
                                     <div class="form-group">
+                                        <label for="constraseñaAdmin">Administrador</label>
+                                        <input class="form-control" type="text" name="Admin" id="Admin">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="constraseñaAdmin">Constraseña Administrador</label>
                                         <input class="form-control" type="password" name="passwordAdmin" id="passwordAdmin">
                                     </div>
+                                    <input type="hidden" id="usuario" value="<?php echo $_SESSION['cedula']; ?>">
                                     <button id="chequearAdmin" type="button" class="btn btn-primary" onclick="verficarAdmin()">Aceptar</button>
                                 </form>
                             </div>
@@ -115,18 +135,24 @@
                 }
 
                 function verficarAdmin(){
+                    let admin = jQuery('#Admin').val();
                     let pass = jQuery('#passwordAdmin').val();
-                    console.log(pass);
+                    let usuario = jQuery('#usuario').val();
 
                     jQuery.ajax({
                         type: "POST",
-                        url: '<?php echo base_url();?>' + 'Usuarios/validarAdmin',
-                        data: {pass: pass},
+                        url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
+                        data: {admin: admin, pass: pass, usuario: usuario},
                         success: function(data){
                             console.log(data);
+                            let valor = data;
+                            if(valor == "exito"){
+                                //location.reload();
+                            }
                         }
                     });
 
+                    $("#Admin").val('');
                     $("#passwordAdmin").val('');
                     CierraModal();
                 }
