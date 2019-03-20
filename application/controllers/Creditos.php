@@ -7,7 +7,7 @@ class Creditos extends CI_Controller {
 
     parent::__construct();
     $this->load->model('Fact_Credito_Model');
-    $this->load->model('Productos_Model');
+    $this->load->model('Facturas_Model');
     $this->load->model('Ventas_Model');
   }
 
@@ -34,5 +34,38 @@ class Creditos extends CI_Controller {
     }
 
     $this->Ventas_Model->eliminar_all();
+  }
+
+  //envia la informacion a la vista de Facturas creditos
+	public function fact_credito(){
+		$data['facturas'] = $this->Fact_Credito_Model->ver_facturas();
+		$this->load->view("Facturas_credito/Facturas_Credito", $data);
+	}
+
+	//carga la informacion detallada de una factura credito
+  public function get_info_factura_cred($id){
+    $data['factura'] = $this->Fact_Credito_Model->ver_info_factura($id);
+    $this->load->view("Facturas_credito/Factura_detalle_credito", $data);
+  }
+
+  //registra la factura credito en facturas pagas y elimina la factura credito
+  public function pagarCredito($idFact){
+    $credito = [];
+    $credito = $this->Fact_Credito_Model->ver_info_factura($idFact);
+    foreach($credito as $item){
+      $usuario = $item["id_usuario_credi"]; //id_usuario_credi
+      $productos = $item["nombre_produc"];//nombre_produc
+      $precios_producto = $item["precios_produc"];//precios_produc
+      $cantidades_producto = $item["cantidades_produc"];//cantidades_produc
+      $total_factura = $item["total_factura"];//total_factura
+    }
+
+    $insert = $this->Facturas_Model->new_factura($usuario, date("Y-m-d"), $productos, $precios_producto, $cantidades_producto, $total_factura);
+    if($insert){
+      $delete = $this->Fact_Credito_Model->deleteCredito($idFact);
+      if($delete){
+        redirect("Creditos/fact_credito");
+      }
+    }
   }
 }
