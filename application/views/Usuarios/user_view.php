@@ -96,10 +96,6 @@
                        
                     <?php } ?>
 
-                    <!-- Link to open the modal 
-                    <p><a href="#ex1" rel="modal:open">Open Modal</a></p> -->
-                    <!-- Este es el modal generado por jQuery     class="close-modal"-->
-
                     <div id="ex1" class="modal">
                         <div class="modal-content">
                             <div class="modal-header" style=" background-color: rgb(241, 196, 15);">
@@ -109,12 +105,10 @@
                             <div class="modal-body">
                                 <form action="#" method="post">
                                     <div class="form-group">
-                                        <label for="constraseñaAdmin">Administrador</label>
-                                        <input class="form-control" type="text" name="Admin" id="Admin">
+                                        <input class="form-control" placeholder="Administrador" type="password" name="Admin" id="Admin">
                                     </div>
                                     <div class="form-group">
-                                        <label for="constraseñaAdmin">Constraseña Administrador</label>
-                                        <input class="form-control" type="password" name="passwordAdmin" id="passwordAdmin">
+                                        <input class="form-control" placeholder="Constraseña" type="password" name="passwordAdmin" id="passwordAdmin">
                                     </div>
                                     <input type="hidden" id="usuario" value="<?php echo $_SESSION['cedula']; ?>">
                                     <button id="chequearAdmin" type="button" class="btn btn-primary" onclick="verficarAdmin()">Aceptar</button>
@@ -139,23 +133,51 @@
                     let pass = jQuery('#passwordAdmin').val();
                     let usuario = jQuery('#usuario').val();
 
-                    jQuery.ajax({
-                        type: "POST",
-                        url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
-                        data: {admin: admin, pass: pass, usuario: usuario},
-                        success: function(data){
-                            console.log(data);
-                            let valor = data;
-                            if(valor == "exito"){
-                                //location.reload();
-                            }
-                        }
-                    });
+                    if(admin != "" && admin != null && pass != "" && pass != null){
+                        jQuery.ajax({
+                            type: "POST",
+                            url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
+                            data: {admin: admin, pass: pass, usuario: usuario},
+                            success: function(data){
+                                console.log(data);
+                                let valor = data;
 
-                    $("#Admin").val('');
-                    $("#passwordAdmin").val('');
-                    CierraModal();
+                                switch (valor){
+                                    case "fail_user":
+                                        mensajes("Error Usuario.", "error");
+                                        break;
+                                    case "admin":
+                                        mensajes("Solo Administrador.", "info");
+                                        break;
+                                    case "change_failure":
+                                        mensajes("Fallo Cierre.", "warning");
+                                        break;
+                                    default: 
+                                        valor = "";
+                                        location.reload();
+                                }
+                            }
+                        });
+
+                        $("#Admin").val('');
+                        $("#passwordAdmin").val('');
+                        CierraModal();
+                    }
+                    else{
+                        CierraModal();
+                        mensajes("Llenar los campos.", "warning");
+                    }
                 }
+
+                function mensajes(title2, icon2) {
+                    swal({
+                        title: title2,
+                        text: "Has click en el boton.",
+                        icon: icon2,
+                        button: "OK",
+                    });
+                }
+                
             </script>
         </div>
         
