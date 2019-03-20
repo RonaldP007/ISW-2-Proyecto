@@ -7,8 +7,9 @@
 <html lang="en">
   <head>
     <title>Facturas</title>
-	  <link href="<?php echo base_url(); ?>/assets/css/bootstrap.css" rel="stylesheet">
+	  <!--<link href="<?php //echo base_url(); ?>/assets/css/bootstrap.css" rel="stylesheet">-->
 	  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
 
   <body>
@@ -25,8 +26,8 @@
 
       <div class="panel panel-info" style="margin-top: 20px;">
         
-        <div class="panel-heading" style="display: flex; text-align: center;">
-            <h3 class="panel-title" style="margin-top: 5px;">Facturas</h3>
+        <div class="panel-heading" style="display: flex; text-align: center; background-color: #d9edf7;">
+            <h3 class="panel-title" style="margin-top: 5px; font-size: 150%; color: #31708f;">Facturas</h3>
         </div>
 
         <div class="panel-body detalle-producto">
@@ -58,10 +59,10 @@
 						?></td>
 
 						<td><?php 
-							echo $item['totales'];
+							echo "₡" . $item['totales'];
 						?></td>
 
-						<td><a class="btn btn-sm" href="<?php echo base_url() . "Facturas/get_info_factura/" . $item["id"] ?>">Ver</a></td>
+						<td><a class="btn btn-secondary" href="<?php echo base_url() . "Facturas/get_info_factura/" . $item["id"] ?>">Ver</a></td>
 
 					</tr>
                           
