@@ -60,8 +60,4 @@ Class Facturas_Model extends CI_model{
 
 	return $result->result_array();
 	}
-
-
-
-
 }
