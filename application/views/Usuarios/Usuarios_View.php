@@ -81,28 +81,9 @@
 														echo $item['direccion'];
                           ?></td>
                           
-                          <td><?php $valor = $item['caja_activa'];?>
-                            <?php $id = $item['cedula']; ?>
-                            <select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control" onchange="actulizarOpcionCaja(<?php echo $id;?>)" >
-                              <option id="opcion1" value="<?php echo "T";?>" <?php if($valor == "1"){ echo "selected"; }?>> <?php echo "Habilitada";?> </option>
-                              <option id="opcion2" value="<?php echo "F";?>" <?php if($valor == "0"){ echo "selected"; }?>> <?php echo "Desabilitada";?> </option>
-                            </select>
+                          <td><?php $valor = $item['caja_activa'];
+                              if($valor == "1"){ echo "Habilitada"; } elseif($valor == "0"){ echo "Desabilitada"; } ?> 
                           </td>
-
-                          <script>
-                            function actulizarOpcionCaja(ced){
-                              let valor0 = jQuery('#opcionCaja').val();
-                             
-                              $.ajax({
-                                type: 'POST',
-                                url: '<?php echo base_url();?>' + 'Usuarios/cambioCaja',
-                                data: {valor: valor0, user: ced},
-                                success: function(data){
-                                  console.log(data);
-                                }
-                              })
-                            }
-                          </script>
 
 													<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Usuarios/Usuario/" . $cedula?>">Editar</a></td>
 													<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Usuarios/eliminar/" . $cedula?>">Eliminar</a></td>
