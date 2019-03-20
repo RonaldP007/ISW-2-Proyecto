@@ -398,7 +398,7 @@ input[type="submit"]:hover {
 .btn-success {
     color: #fff;
     background-color: #28a745;
-    border-color: #28a745
+    border-color: #28a745;
 }
 
 .btn-success:hover {
@@ -492,7 +492,7 @@ input[type="submit"]:hover {
     margin-top: -0.0%;
     margin-right: 3%;
     font-size: 120%; 
-    width: 10%;
+    width: 10%;   
 }
 
 #total{
@@ -512,7 +512,7 @@ input[type="submit"]:hover {
 }
 
 .table{
-    font-size: 120%;
+    font-size: 100%;
 }
 
 #noDatos{
