@@ -23,7 +23,7 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-success">
                         <div class="panel-heading">
-                            <h2 class="panel-title">Edicion</h2>
+                            <h2 class="panel-title">Edicion</h2> 
                         </div>
 
                         <div class="panel-body">
@@ -54,6 +54,14 @@
 										<div class="form-group">
 											<input class="form-control" placeholder="Direccion" name="direccion" type="text"  required
 											value="<?php echo $item['direccion'];?>">
+										</div>
+
+										<div class="form-group">
+											<?php $valor = $item['caja_activa'];?>
+											<select style="margin-left: 1px;" id="opcionCaja" name="opcionCaja" class="form-control">
+												<option value="<?php echo "1";?>" <?php if($valor == "1"){ echo "selected"; }?>> <?php echo "Habilitada";?> </option>
+												<option value="<?php echo "0";?>" <?php if($valor == "0"){ echo "selected"; }?>> <?php echo "Desabilitada";?> </option>
+											</select>
 										</div>
 
 										<input class="btn btn-lg  btn-block" type="submit" value="Editar" name="Editar" >
