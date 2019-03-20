@@ -71,7 +71,6 @@ class Usuarios extends CI_Controller {
 		}
 	}
 	
-	
 	//borra un Usuario
 	public function eliminar($cedula){
     
@@ -87,11 +86,6 @@ class Usuarios extends CI_Controller {
 		redirect("Usuarios/getUsuarios");
 	 
 	}
-
-
-
-
-
 
 	public function fechas(){
 		date_default_timezone_set("America/Costa_Rica");
@@ -125,13 +119,6 @@ class Usuarios extends CI_Controller {
 
 	}
 
-
-
-
-
-
-	
-
 	//realiza el logueo de un usuario
 	public function login_user(){
 		$user_login=array(
@@ -148,6 +135,7 @@ class Usuarios extends CI_Controller {
 		  $this->session->set_userdata('cedula',$data['cedula']);
 		  $this->session->set_userdata('nombre',$data['nombre']);
 			$this->session->set_userdata('rol',$data['rol']);
+			$this->session->set_userdata('caja',$data['caja_activa']);
 			
 			//$this->load->view("Usuarios/user_view", $info);
 		  redirect("Usuarios/fechas");
@@ -180,12 +168,24 @@ class Usuarios extends CI_Controller {
 	} 
 
 	public function cambioCaja(){
-		$user = $this->input->post("user");
-		$accion = $this->input->post("valor"); 
-		//$accion1 = $this->input->post("valor1");
-		//. " " . $accion1
+		$usuario = $this->input->post('usuario');
 		
-		echo $user . "  " . $accion;
+		$user_admin = array(
+			'cedula'=>$this->input->post('admin'),
+			'pass'=>md5($this->input->post('pass')) 
+		);
+
+		$datos = $this->Usuarios_Model->login_user($user_admin['cedula'],$user_admin['pass']);
+		if($datos){
+			$update = $this->Usuarios_Model->updateCaja($usuario);
+			if($update){
+				echo "exito";
+			}
+			else{
+				echo "fallo";
+			}
+		}
+
 	}	
 }
 ?>
