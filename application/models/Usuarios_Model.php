@@ -10,7 +10,8 @@ Class Usuarios_Model extends CI_model{
   public $direccion;
   public $pass; 
   public $rol;
-  public $caja_activa;
+	public $caja_activa;
+	public $condicion;
   
 
   public function __construct(){
@@ -22,7 +23,7 @@ Class Usuarios_Model extends CI_model{
   }
 
   //registra la informacion de un nuevo usuario
-  public function nuevo_user($cedula, $nombre, $apellidos,$telefono,$direccion,$pass,$rol){
+  public function nuevo_user($cedula, $nombre, $apellidos,$telefono,$direccion,$pass,$rol, $condicion){
     $this->cedula = $cedula;
     $this->nombre = $nombre;
     $this->apellidos = $apellidos;
@@ -30,7 +31,8 @@ Class Usuarios_Model extends CI_model{
     $this->direccion = $direccion;
     $this->pass = $pass;
     $this->rol = $rol;
-    $this->caja_activa = "0"; 
+		$this->caja_activa = "0";
+		$this->condicion = "a"; 
     
     return $this->db->insert('usuarios', $this);
   }
@@ -79,7 +81,7 @@ Class Usuarios_Model extends CI_model{
 
 		$this->db->select('*');
 		$this->db->from('usuarios');
-		//$this->db->where('id_usuario',$id_usuario);
+		$this->db->where('condicion',"a");
 
 		$result = $this->db->get();
 
@@ -125,19 +127,32 @@ Class Usuarios_Model extends CI_model{
   }
 
 
-  //elimina un cliente
+  //elimina un usuario
   public function eliminar($cedula){
 
     $this->db->delete("usuarios", array("cedula" => $cedula));
 
   }
 
-  //esta es para cambiar varlor de caja
+  //esta es para cambiar valor de caja
   public function updateCaja($idUser){
     $this->db->where('cedula', $idUser);
     $this->db->set('caja_activa', "0");
     
     return $this->db->update('usuarios');
+	}
+	
+
+	//desactiva de un usuario
+	public function update_usuario_desactivar($id){
+		$data=array(
+			'condicion'=> "d",
+		);
+		
+		
+		$this->db->where('cedula',$id);
+		return $this->db->update('usuarios',$data);
+          
   }
 }
 

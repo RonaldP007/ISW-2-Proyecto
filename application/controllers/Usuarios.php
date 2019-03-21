@@ -48,7 +48,8 @@ class Usuarios extends CI_Controller {
 			$this->input->post("telefono"),
 			$this->input->post("direccion"),
 			md5($this->input->post("pass")),
-			$this->input->post("rol")
+			$this->input->post("rol"),
+			$this->input->post("estado") 
 			);
 			redirect("Usuarios/getUsuarios");
 	   
@@ -196,5 +197,14 @@ class Usuarios extends CI_Controller {
 		}
 
 	}	
+
+
+	//desactiva un usuario
+	public function desactivar($id){
+
+		$this->Usuarios_Model->update_usuario_desactivar($id); 
+		redirect("Usuarios/getUsuarios");
+		
+	}
 }
 ?>

@@ -70,6 +70,20 @@
 											</div>
 										</div>
 
+										<div class="form-group">
+											<div class="form-group col-md-13">
+												<select style="margin-left: 1px;" id="estado" name="estado" value="" class="form-control" required>
+
+													
+													
+													
+													<option value="a" <?php if($item['estado'] == "a"){echo "selected";} ?> ><?php echo "Activo"?></option>
+													<option value="d">Desactivar</option>
+												
+												</select>
+											</div>
+										</div>
+
 										<input class="btn btn-lg  btn-block" type="submit" value="Editar" name="Editar" >
 										<a class="btn btn-lg btn-block" href= "<?= base_url('Clientes/getClientes') ?>" role="button">Volver</a>  
 								</form>

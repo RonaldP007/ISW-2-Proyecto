@@ -36,7 +36,8 @@ class Cuentas_pagar extends CI_Controller {
 		$this->input->post("numero_factura"),
 		$this->input->post("proveedor"),
 		$this->input->post("monto"),
-		$this->input->post("fecha_pago")
+		$this->input->post("fecha_pago"),
+		$this->input->post("estado") 
 		
 		);
 		redirect("Cuentas_pagar/getCuentas_pagar");
@@ -91,12 +92,20 @@ class Cuentas_pagar extends CI_Controller {
 	}
 	
 
-	 //envia la informacion a la vista de edicion
-	 public function cuenta($id){
+	//envia la informacion a la vista de edicion
+	public function cuenta($id){
 
 		$data['cuenta'] = $this->Cuentas_pagar_Model->cuenta($id);
 		$this->load->view("Cuentas_pagar/Cuentas_pagar_Edit", $data);
 	
+	}
+
+	//desactiva una cuenta a pagar 
+	public function desactivar($id){
+
+		$this->Cuentas_pagar_Model->update_cuenta_desactivar($id); 
+		redirect("Cuentas_pagar/getCuentas_pagar");
+		
 	}
 }
 ?>

@@ -47,7 +47,8 @@ class Clientes extends CI_Controller {
         $this->input->post("apellidos"),
         $this->input->post("telefono"),
 				$this->input->post("direccion"),
-				$this->input->post("fiador") 
+				$this->input->post("fiador"),
+				$this->input->post("estado") 
         );
         redirect("Clientes/getClientes");
    

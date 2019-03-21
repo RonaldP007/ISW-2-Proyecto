@@ -78,7 +78,7 @@
                   ?></td>
 
                   <td><a class="btn btn-info" href="<?php echo base_url() . "Productos/Producto/" . $id?>">Editar</a></td>
-                  <td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Productos/eliminar/" . $id?>">Eliminar</a></td>
+                  <td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Productos/desactivar/" . $id?>">Eliminar</a></td>
 
                   </tr>
                             

@@ -86,7 +86,7 @@
                           </td>
 
 													<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Usuarios/Usuario/" . $cedula?>">Editar</a></td>
-													<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Usuarios/eliminar/" . $cedula?>">Eliminar</a></td>
+													<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Usuarios/desactivar/" . $cedula?>">Eliminar</a></td>
   
 												</tr>
 											<?php }?>

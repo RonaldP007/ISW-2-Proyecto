@@ -73,7 +73,7 @@
 										echo $item['fecha_pago'];
 								?></td>
 								<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Cuentas_pagar/cuenta/" . $id?>">Editar</a></td>
-								<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Cuentas_pagar/eliminar/" . $id?>">Eliminar</a></td>
+								<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Cuentas_pagar/desactivar/" . $id?>">Eliminar</a></td>
 
 							</tr>
 						

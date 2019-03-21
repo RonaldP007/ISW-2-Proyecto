@@ -41,7 +41,8 @@ class Productos extends CI_Controller {
         $this->input->post("nombre"),
 				$this->input->post("cantidad"),
 				$this->input->post("precio"),
-				$this->input->post("proveedor")
+				$this->input->post("proveedor"),
+				$this->input->post("estado") 
         );
         redirect("Productos/getProductos");
    
@@ -79,6 +80,14 @@ class Productos extends CI_Controller {
 		$this->Productos_Model->update_producto($id);
 		redirect("Productos/getProductos");
 	 
+	}
+
+	//desactiva un Productos
+	public function desactivar($id){
+
+		$this->Productos_Model->update_producto_desactivar($id); 
+		redirect("Productos/getProductos");
+		
 	}
 }
 ?>

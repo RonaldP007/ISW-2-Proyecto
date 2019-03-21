@@ -7,19 +7,20 @@ Class Productos_Model extends CI_model{
   public $nombre;
   public $cantidad;
   public $precio;
-  public $id_proveedor;
-  
+	public $id_proveedor;
+	public $estado;  
 
   public function __construct(){
     $this->load->database();
   }
 
    //registra la informacion de un nuevo Productos;
-   public function nuevo_Producto($nombre,$cantidad,$precio,$id_proveedor){
+   public function nuevo_Producto($nombre,$cantidad,$precio,$id_proveedor,$estado){
 		$this->nombre = $nombre;
 		$this->cantidad = $cantidad;
 		$this->precio = $precio;
 		$this->id_proveedor = $id_proveedor;
+		$this->estado = "a";
 		
 		return $this->db->insert('productos', $this);
   }
@@ -50,7 +51,7 @@ Class Productos_Model extends CI_model{
 			$this->db->select('p.id,p.nombre,p.cantidad,p.precio,p.id_proveedor,pv.nombre_pv');
 			$this->db->from('productos p');
 			$this->db->join('proveedores pv', 'p.id_proveedor = pv.id');
-
+			$this->db->where('estado','a');
         $result = $this->db->get();
 
         if(!$result->num_rows() == 1){
@@ -62,7 +63,7 @@ Class Productos_Model extends CI_model{
 
 	}
 
-	 // Carga la informacion de un Productos
+	 // Carga la informacion de un Producto
 	 public function producto($id){
 
 				$this->db->select('p.id,p.nombre,p.cantidad,p.precio,p.id_proveedor,pv.nombre_pv');
@@ -101,6 +102,18 @@ Class Productos_Model extends CI_model{
 		$this->db->delete("productos", array("id" => $id));
 	
 	}
+
+	//desactiva de un Producto
+	public function update_producto_desactivar($id){
+		$data=array(
+			'estado'=> "d",
+		);
+		
+		
+		$this->db->where('id',$id);
+		return $this->db->update('productos',$data);
+          
+  }
 	
 }
 ?>
