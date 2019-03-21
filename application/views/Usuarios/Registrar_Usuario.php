@@ -31,7 +31,7 @@
                         <?php if(!empty($this->session->flashdata())): ?>
                             <div class="alert alert-<?php echo $this->session->flashdata('clase')?>">
                                 <?php $error = true; 
-                                echo $this->session->flashdata('mensaje') ?>
+                                echo $this->session->flashdata('mensaje') ?> 
 
                             </div>
                         <?php endif; ?>

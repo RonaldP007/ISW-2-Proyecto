@@ -82,7 +82,7 @@
                           ?></td>
                           
                           <td><?php $valor = $item['caja_activa'];
-                              if($valor == "1"){ echo "Habilitada"; } elseif($valor == "0"){ echo "Desabilitada"; } ?> 
+                              if($valor == "1"){ echo "Habilitada"; } elseif($valor == "0"){ echo "Deshabilitada"; } ?> 
                           </td>
 
 													<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Usuarios/Usuario/" . $cedula?>">Editar</a></td>
