@@ -10,6 +10,7 @@ Class Usuarios_Model extends CI_model{
   public $direccion;
   public $pass; 
   public $rol;
+  public $caja_activa;
   
 
   public function __construct(){
@@ -29,6 +30,7 @@ Class Usuarios_Model extends CI_model{
     $this->direccion = $direccion;
     $this->pass = $pass;
     $this->rol = $rol;
+    $this->caja_activa = "0"; 
     
     return $this->db->insert('usuarios', $this);
   }
