@@ -12,6 +12,20 @@
     <title>Edicion de Cliente</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title">
     <link rel="stylesheet"  href="<?php echo base_url(); ?>/assets/css/registrar.css">
+	<!--Este script es para usar Sweet Alert -->
+	<script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script>
+	<script>
+		let msj;
+		//es para notificar a el usuario de no tiene acceso a ventas
+		function mensaje() {
+			swal({
+				title: msj,
+				text: "Has click en el boton.",
+				icon: "warning",
+				button: "OK",
+			});
+		}
+	</script>
 
 </head>
 
@@ -27,6 +41,13 @@
                         </div>
 
                         <div class="panel-body">
+							<?php if($_SESSION['mensaje'] != "" && $_SESSION['mensaje'] != null) :?>
+								<script> 
+									msj = "No se puede desactivar, tiene un credito pendiente.";
+									mensaje() 
+								</script>
+								<?php $_SESSION['mensaje'] = null; ?>
+							<?php endif ?>
 
 							<?php foreach($cliente as $item){?>
 
@@ -59,7 +80,7 @@
 										<div class="form-group">
 											<div class="form-group col-md-13">
 												<select style="margin-left: 1px;" id="fiador" name="fiador" value="" class="form-control" required>
-													<option value="">Seleccionar Cedula Fiador</option>
+													<option value="">Seleccionar Cedula Fiador</option>  
 
 													<?php if(count($fiadores)>0):?>
 														<?php foreach($fiadores as $fiador):?>
@@ -74,9 +95,6 @@
 											<div class="form-group col-md-13">
 												<select style="margin-left: 1px;" id="estado" name="estado" value="" class="form-control" required>
 
-													
-													
-													
 													<option value="a" <?php if($item['estado'] == "a"){echo "selected";} ?> ><?php echo "Activo"?></option>
 													<option value="d">Desactivar</option>
 												
