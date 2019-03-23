@@ -41,7 +41,7 @@ Class Fact_Credito_Model extends CI_model{
       $this->db->where('id_cliente_credito', $usuario); //
       $query= $this->db->get();
 
-      return $query->result_array();
+      return $query->result_array(); 
   }
 
   // extrae la informacion de las facturas de credito

@@ -94,7 +94,6 @@ Class Clientes_Model extends CI_model{
         $result = $this->db->get();
 
         return $result->result_array();
-
 	}
 
 
@@ -109,7 +108,7 @@ Class Clientes_Model extends CI_model{
 			'estado'=> $this->input->post('estado')
 		);
 		
-		if($cedula==0){
+		if($cedula==0){//preguntar a ronald sobre esto
 			return $this->db->insert('clientes',$data);
 		}else{
 			$this->db->where('cedula',$cedula);
