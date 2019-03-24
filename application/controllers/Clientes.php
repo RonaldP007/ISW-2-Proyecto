@@ -126,11 +126,16 @@ class Clientes extends CI_Controller {
       }
 
       if($resultado != "pendiente"){
-        foreach($valorusuario as $item){ $fiador = $item['id_fiador']; } //este foreach recorer la lista para ver si el cliente tiene fiador
+        //este foreach recorer la lista para ver si el cliente tiene fiador
+        foreach($valorusuario as $item){ $estado = $item['estado'] ; $fiador = $item['id_fiador']; }
 
-        if($fiador != "0"){$cont_fiador = "con_fia";}else{$cont_fiador = "sin_fia";}
+        if($estado == "a"){
+          if($fiador != "0"){$cont_fiador = "con_fia";}else{$cont_fiador = "sin_fia";}
 
-        echo $cont_fiador;
+          echo $cont_fiador;
+        }else{
+          echo "deshabi";
+        }
 
       }else{
         echo "p"; //indica que el credito esta pendiente

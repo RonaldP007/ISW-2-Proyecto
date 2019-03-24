@@ -128,26 +128,33 @@ class Usuarios extends CI_Controller {
 		'pass'=>md5($this->input->post('pass')) 
 		);
 	
-		$data=$this->Usuarios_Model->login_user($user_login['cedula'],$user_login['pass']);
+		$data=$this->Usuarios_Model->login_user($user_login['cedula'],$user_login['pass']); 
 		//$info['datos'] = fechas();
 		
 		if($data){
-	
-		  $this->session->set_userdata('cedula',$data['cedula']);
-		  $this->session->set_userdata('nombre',$data['nombre']);
-			$this->session->set_userdata('rol',$data['rol']);
-			$this->session->set_userdata('caja',$data['caja_activa']);
-			
-			//$this->load->view("Usuarios/user_view", $info);
-		  redirect("Usuarios/fechas");
+			if($data["condicion"] === "a"){
+				$this->session->set_userdata('cedula',$data['cedula']);
+				$this->session->set_userdata('nombre',$data['nombre']);
+				$this->session->set_userdata('rol',$data['rol']);
+				$this->session->set_userdata('caja',$data['caja_activa']);
+				
+				//$this->load->view("Usuarios/user_view", $info);
+				redirect("Usuarios/fechas");
+			}
+			else{
+				$this->mensajes("Usuario Deshabilitado");
+			}
 		}
 		else{  
-		  $this->session->set_flashdata('error_msg', 'Datos Incorrectos');
-			///$this->load->view("Usuarios/login.php");
-			$this->load->view("header");
-      $this->load->view("principal");
-      $this->load->view("footer");
+		  $this->mensajes('Datos Incorrectos');
 		}
+	}
+
+	public function mensajes($mjs){
+		$this->session->set_flashdata('error_msg', $mjs);
+		$this->load->view("header");
+		$this->load->view("principal");
+		$this->load->view("footer");
 	}
 	
 	//cierra la sesion abierta
