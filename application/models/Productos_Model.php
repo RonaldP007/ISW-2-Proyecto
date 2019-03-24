@@ -48,10 +48,10 @@ Class Productos_Model extends CI_model{
     // Carga la informacion de los Productos
     public function ver_productos(){
 
-			$this->db->select('p.id,p.nombre,p.cantidad,p.precio,p.id_proveedor,pv.nombre_pv');
+			$this->db->select('p.id,p.nombre,p.cantidad,p.precio,p.id_proveedor,p.estado,pv.nombre_pv');
 			$this->db->from('productos p');
 			$this->db->join('proveedores pv', 'p.id_proveedor = pv.id');
-			$this->db->where('estado','a');
+			$this->db->where('p.estado','a');
         $result = $this->db->get();
 
         if(!$result->num_rows() == 1){
