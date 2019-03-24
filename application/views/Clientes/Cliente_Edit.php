@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="panel-body">
-							<?php if($_SESSION['mensaje'] != "" && $_SESSION['mensaje'] != null) :?>
+							<?php if(isset($_SESSION['mensaje']) != "" && isset($_SESSION['mensaje']) != null) :?>
 								<script> 
 									msj = "No se puede desactivar, tiene un credito pendiente.";
 									mensaje() 

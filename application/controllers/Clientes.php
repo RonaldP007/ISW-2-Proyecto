@@ -82,6 +82,7 @@ class Clientes extends CI_Controller {
 
 	//edita un cliente
 	public function editar($cedula){
+    $estad = "pasar";
     $credito = $this->input->post('estado');
 
     if ($credito === "a"){
@@ -97,8 +98,10 @@ class Clientes extends CI_Controller {
       if($estad === "p"){
         $_SESSION['mensaje'] = "pendiente";
         $this->Cliente($cedula);
-      }else{
-        echo "carro";
+      }
+      elseif($estad === "pasar"){
+        $this->Clientes_Model->update_cliente($cedula);
+		    redirect("Clientes/getClientes");
       }
     }
 	}
