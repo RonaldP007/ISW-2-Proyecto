@@ -41,7 +41,8 @@ class Proveedores extends CI_Controller {
       $this->input->post("nombre_pv"),
       $this->input->post("direccion"),
       $this->input->post("telefono"),
-      $this->input->post("correo")
+			$this->input->post("correo"),
+			$this->input->post("estado") 
       );
       redirect("Proveedores/getProveedores");	
 	}
@@ -60,6 +61,15 @@ class Proveedores extends CI_Controller {
 		$this->Proveedores_Model->update_proveedor($id); 
 		redirect("Proveedores/getProveedores");
 	 
+	}
+
+		
+	//desactiva un Proveedor
+	public function desactivar($id){
+
+		$this->Proveedores_Model->update_proveedor_desactivar($id); 
+		redirect("Proveedores/getProveedores");
+		
 	}
 }
 ?>

@@ -50,38 +50,41 @@
 
             	<tbody>
 
-					<?php foreach($fiadores as $item){?>
-					<tr>
-						<?php 
-						$cedula = $item['cedula'];           
-						?>
+					<?php foreach($fiadores as $item){
+						if($item['cedula'] == 0){
+							continue;
+						}else{ ?>
+						<tr>
+							<?php 
+							$cedula = $item['cedula'];           
+							?>
 
-						<td><?php  
-							echo $item['cedula'];
-						?></td>
+							<td><?php  
+								echo $item['cedula'];
+							?></td>
 
-						<td><?php 
-						echo $item['nombre'];
-						?></td>
+							<td><?php 
+							echo $item['nombre'];
+							?></td>
 
-						<td><?php 
-							echo $item['apellidos'];
-						?></td>
+							<td><?php 
+								echo $item['apellidos'];
+							?></td>
 
-						<td><?php 	
-							echo $item['telefono']; 
-						?></td>
+							<td><?php 	
+								echo $item['telefono']; 
+							?></td>
 
-						<td><?php 
-							echo $item['direccion'];
-						?></td>
+							<td><?php 
+								echo $item['direccion'];
+							?></td>
 
-						<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Fiadores/Fiador/" . $cedula?>">Editar</a></td>
-						<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Fiadores/eliminar/" . $cedula?>">Eliminar</a></td>
+							<td><a class="btn btn-sm btn-info" href="<?php echo base_url() . "Fiadores/Fiador/" . $cedula?>">Editar</a></td>
+							<td><a class="btn btn-sm btn-danger" href="<?php echo base_url() . "Fiadores/desactivar/" . $cedula?>">Eliminar</a></td>
 
-					</tr>
+						</tr>
                           
-					<?php }?>
+					<?php }}?>
                     
                 </tr>
               </tbody>

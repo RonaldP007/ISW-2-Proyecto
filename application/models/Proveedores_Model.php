@@ -6,7 +6,8 @@ Class Proveedores_Model extends CI_model{
   public $nombre_pv;
   public $direccion;
   public $telefono;
-  public $correo;
+	public $correo;
+	public $estado;
   
 
   public function __construct(){
@@ -14,11 +15,12 @@ Class Proveedores_Model extends CI_model{
   }
 
    //registra la informacion de un nuevo Proveedor;
-   public function nuevo_Proveedor($nombre_pv,$direccion,$telefono,$correo){
+   public function nuevo_Proveedor($nombre_pv,$direccion,$telefono,$correo,$estado){
 		$this->nombre_pv = $nombre_pv;
 		$this->direccion = $direccion;
 		$this->telefono = $telefono;
 		$this->correo = $correo;
+		$this->estado = "a";
 		
 		return $this->db->insert('proveedores', $this);
   }
@@ -48,7 +50,7 @@ Class Proveedores_Model extends CI_model{
 
     $this->db->select('*');
     $this->db->from('proveedores');
-    //$this->db->where('id_usuario',$id_usuario);
+    $this->db->where('estado',"a");
 
     $result = $this->db->get();
 
@@ -97,6 +99,18 @@ Class Proveedores_Model extends CI_model{
 		$this->db->delete("proveedores", array("id" => $id));
 	
 	}
+
+		//desactiva de un Proveedor
+		public function update_proveedor_desactivar($id){
+			$data=array(
+				'estado'=> "d",
+			);
+			
+			
+			$this->db->where('id',$id);
+			return $this->db->update('proveedores',$data);
+						
+		}
 	
 
 }
