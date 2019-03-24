@@ -7,7 +7,14 @@
 
         <!--Contenido-->
         <div id="contenido">
-
+            <script>
+                function timeMSJ(id) {
+                    let idDiv = id;
+                    setTimeout(function() {
+                        $(idDiv).fadeOut(1500);
+                    },3000);
+                }
+            </script>
             <!--Barra lateral-->
             <aside id="lateral">
                 <!--<a href= "<?= base_url('Usuarios/login') ?>" role="button">Login</a> -->
@@ -20,25 +27,23 @@
                             <?php
                                 $success_msg= $this->session->flashdata('success_msg');
                                 $error_msg= $this->session->flashdata('error_msg'); 
-
-                            if($success_msg){
-                                ?>
-                                <div class="alert alert-success">
-                                <?php 
-                                    echo $success_msg; 
-                                ?>
+                            ?>
+                            <?php if($success_msg) :?>
+                                <div id="msj_Success" class="alert alert-success">
+                                    <?php echo $success_msg; ?>
+                                    <script> timeMSJ("msj_Success") </script>
                                 </div>
                             <?php
-                            }
-                            if($error_msg){
-                                ?>
-                                <div class="alert alert-danger">
-                                <?php 
-                                    echo $error_msg; 
-                                ?>
+                                endif;
+                            ?>
+
+                            <?php if($error_msg) :?>
+                                <div id="msj_danger" class="alert alert-danger">
+                                    <?php echo $error_msg; ?>
+                                    <script> timeMSJ("#msj_danger") </script>
                                 </div>
-                                <?php
-                            }
+                            <?php
+                                endif; 
                             ?>
 
                             <div class="panel-body Login">
@@ -59,8 +64,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
             </aside>
  
             <!--Contenido central-->
