@@ -11,8 +11,8 @@
                 function timeMSJ(id) {
                     let idDiv = id;
                     setTimeout(function() {
-                        $(idDiv).fadeOut(1500);
-                    },3000);
+                        $(idDiv).fadeOut(1000);
+                    },2000);
                 }
             </script>
             <!--Barra lateral-->
