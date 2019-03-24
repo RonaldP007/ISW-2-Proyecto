@@ -82,10 +82,28 @@ class Clientes extends CI_Controller {
 
 	//edita un cliente
 	public function editar($cedula){
-    
-		$this->Clientes_Model->update_cliente($cedula);
-		redirect("Clientes/getClientes");
-	 
+    $estad = "pasar";
+    $credito = $this->input->post('estado');
+
+    if ($credito === "a"){
+      $this->Clientes_Model->update_cliente($cedula);
+		  redirect("Clientes/getClientes");
+    }
+    elseif ($credito === "d") {
+      $estado = $this->Fact_Credito_Model->estadoCredito($cedula);//este verifica el estado de creditos
+      foreach($estado as $datos){
+        $estad = $datos["estado_factura"];
+      }
+      
+      if($estad === "p"){
+        $_SESSION['mensaje'] = "pendiente";
+        $this->Cliente($cedula);
+      }
+      elseif($estad === "pasar"){
+        $this->Clientes_Model->update_cliente($cedula);
+		    redirect("Clientes/getClientes");
+      }
+    }
 	}
 
   //verifica usuario para ver si existe, tambien si tiene fiador y creditos aprobados.

@@ -179,7 +179,7 @@ class Usuarios extends CI_Controller {
 		$datos = $this->Usuarios_Model->login_user($user_admin['cedula'],$user_admin['pass']);
 		if($datos){
 
-			if($datos["rol"] === "a"){
+			if($datos["rol"] === "a"){ 
 				$update = $this->Usuarios_Model->updateCaja($usuario);
 				if($update){
 					echo $_SESSION['caja'] = "0";
