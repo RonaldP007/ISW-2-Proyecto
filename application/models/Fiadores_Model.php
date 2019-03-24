@@ -8,19 +8,20 @@ Class Fiadores_Model extends CI_model{
   public $apellidos;
   public $telefono;
   public $direccion;
-
+	public $estado;
 
   public function __construct(){
     $this->load->database();
   }
 
    //registra la informacion de un nuevo Fiador;
-   public function nuevo_Fiador($cedula,$nombre,$apellidos,$telefono,$direccion){
+   public function nuevo_Fiador($cedula,$nombre,$apellidos,$telefono,$direccion,$estado){
 		$this->cedula = $cedula;	
 		$this->nombre = $nombre;
 		$this->apellidos = $apellidos;
 		$this->telefono = $telefono;
 		$this->direccion = $direccion;
+		$this->estado = "a";
 		
 		return $this->db->insert('fiadores', $this);
   }
@@ -50,7 +51,7 @@ Class Fiadores_Model extends CI_model{
 
         $this->db->select('*');
         $this->db->from('fiadores');
-        //$this->db->where('cedula_usuario',$cedula_usuario);
+        $this->db->where('estado',"a");
 
         $result = $this->db->get();
 
@@ -100,6 +101,18 @@ Class Fiadores_Model extends CI_model{
 
 		$this->db->delete("fiadores", array("cedula" => $cedula));
 	
+	}
+
+	//desactiva de un Fiador
+	public function update_fiador_desactivar($id){
+		$data=array(
+			'estado'=> "d",
+		);
+		
+		
+		$this->db->where('cedula',$id);
+		return $this->db->update('fiadores',$data);
+					
 	}
 	
 

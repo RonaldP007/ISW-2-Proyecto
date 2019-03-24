@@ -44,8 +44,8 @@ class Fiadores extends CI_Controller {
 				$this->input->post("nombre"),
 				$this->input->post("apellidos"),
 				$this->input->post("telefono"),
-				$this->input->post("direccion")
-				
+				$this->input->post("direccion"),
+				$this->input->post("estado")
 				);
 				redirect("Fiadores/getFiadores");
    
@@ -82,6 +82,14 @@ class Fiadores extends CI_Controller {
 		$this->Fiadores_Model->update_fiador($id);
 		redirect("Fiadores/getFiadores");
 	 
+	}
+
+	//desactiva un Fiador
+	public function desactivar($id){
+
+		$this->Fiadores_Model->update_fiador_desactivar($id); 
+		redirect("Fiadores/getFiadores");
+		
 	}
 }
 ?>
