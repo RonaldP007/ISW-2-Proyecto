@@ -32,7 +32,7 @@ Class Cuentas_pagar_Model extends CI_model{
 		$this->db->select('cp.id,cp.numero_factura,cp.id_proveedor,cp.monto,cp.fecha_pago,pv.nombre_pv');
 		$this->db->from('cuentasxpagar cp');
 		$this->db->join('proveedores pv', 'cp.id_proveedor = pv.id');
-		$this->db->where('estado','a');
+		$this->db->where('cp.estado','a');
 		$result = $this->db->get();
 
 		if(!$result->num_rows() == 1){
