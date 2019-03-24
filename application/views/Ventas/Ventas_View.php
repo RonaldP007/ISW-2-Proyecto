@@ -289,35 +289,48 @@
 			function verficarUsuario() {
 				iduser = jQuery('#idUser').val();
 
-				if(iduser != ""){
-					
-					jQuery.ajax({
-						type: "post",
-						url: '<?php echo base_url();?>' + 'Clientes/verificarCliente',
-						data:{id:iduser},
-						success: function(data){
-							fiador = data;//obtengo el valor del fiador
-							if(fiador != "" && fiador != null && fiador != "f" && fiador != "p"){
-								//console.log(fiador);
-								$(".form-group").show();
-								$("#guardarCompra").show();
-								$("#chequearAdmin").hide();
+				if(comprueba){
+
+					if(iduser != ""){
+						
+						jQuery.ajax({
+							type: "post",
+							url: '<?php echo base_url();?>' + 'Clientes/verificarCliente',
+							data:{id:iduser},
+							success: function(data){
+								fiador = data;//obtengo el valor del fiador
+								if(fiador != "" && fiador != null && fiador != "f" && fiador != "p"){
+									if(fiador != "deshabi"){
+										$(".form-group").show();
+										$("#guardarCompra").show();
+										$("#chequearAdmin").hide();
+									}
+									if(fiador == "deshabi"){
+										mensaje("El usuario esta deshabilitado.")
+									}
+								}
+								if(fiador == "f"){
+									mensaje("No existe el usuario.")
+								}
+								if(fiador == "p"){
+									mensaje("El usuario posee un credito.")
+								}
 							}
-							if(fiador == "f"){
-								mensaje("No existe el usuario.")
-							}
-							if(fiador == "p"){
-								mensaje("El usuario posee un credito.")
-							}
-						}
-					})	
+						})	
+					}else{
+						mensaje("Debe digitar ID usuario.")
+					}
 				}
+				else{
+					mensaje("Debe agregar productos a la tabla.")
+				}
+				
 			}
 
 			function registrarCompra() {
 				user = jQuery('#idUser').val();
 				monto = jQuery('#montoCredito').val();
-				//console.log(user);
+				
 				if(comprueba){
 					if(user != "" && monto != ""){
 						if(fiador == "sin_fia"){
