@@ -27,12 +27,16 @@
   <body>
 		<div class="container">
 
-
+            <div>
+                <a href="<?= base_url('Facturas/index') ?>">
+                <img id="logoSuper" src="<?php echo base_url(); ?>/assets/img/logo_Super.jfif" alt="Logo principal" />
+                </a>
+            </div>
 
 			<br /> <br /> <br />
 			<br /> <br /> <br />
 
-            <div class="panel panel-info">
+            <div class="panel panel-info" style="margin-top: 5%;">
                 
                 <div class="panel-heading">
                     <h3 class="panel-title">Factura de Venta Realizada el <?php echo $items_factura['fecha']; ?></h3>
@@ -62,11 +66,11 @@
 
                                     <td><?php echo $precio[$i]?></td>
 
-                                    <td><?php echo $cantidad[$i]?></td>
+                                    <td><?php echo "₡" . $cantidad[$i]?></td>
 
                                     <td><?php $subtotal = ($cantidad[$i] * $precio[$i]);
                                         
-                                        echo $subtotal; 
+                                        echo "₡" . $subtotal; 
                                     ?></td>
                                 </tr>  
 
@@ -74,11 +78,12 @@
 
                                 <tr>
                                     <br/>
-                                    <td><a class="btn-sm btn-success volver" href="<?= base_url('Facturas/index') ?>">Volver</a></td>
+                                    <!--<td><a class="btn-sm btn-success volver" href="<?php //base_url('Facturas/index') ?>">Volver</a></td>-->
 									<td><?php echo "";?></td>
                                     <td><?php echo "";?></td>
                                     <td><?php echo "";?></td>
-                                    <td><?php echo $items_factura['totales'];?></td>
+                                    <td><?php echo "";?></td>
+                                    <td><?php echo "₡" . $items_factura['totales'];?></td>
                                 </tr>
 
                             </tbody>
