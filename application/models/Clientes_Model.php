@@ -156,6 +156,18 @@ Class Clientes_Model extends CI_model{
 		
 		$this->db->where('cedula',$cedula);
 		return $this->db->update('clientes',$data);     
-  }
+	}
+	
+		//desactiva de un cliente
+		public function update_cliente_desactivar($id){
+			$data=array(
+				'estado'=> "d",
+			);
+			
+			
+			$this->db->where('cedula',$id);
+			return $this->db->update('clientes',$data);
+						
+		}
 }
 ?>

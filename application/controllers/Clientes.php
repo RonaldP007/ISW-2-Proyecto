@@ -144,7 +144,16 @@ class Clientes extends CI_Controller {
     else{
       echo "f"; //indica que el usuario no esta registrado 
     }
-  }
+	}
+	
+
+	//desactiva un cliente
+	public function desactivar($id){
+
+		$this->Clientes_Model->update_cliente_desactivar($id); 
+		redirect("Clientes/getClientes");
+		
+	}
 
 }
 ?>
