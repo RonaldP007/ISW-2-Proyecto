@@ -7,7 +7,8 @@ class Fiadores extends CI_Controller {
 
     parent::__construct();
     $this->load->model('Fiadores_Model');
-
+		$this->load->model('Clientes_Model');
+		$this->load->model('Fact_Credito_Model');
 
   } 
 
@@ -64,7 +65,7 @@ class Fiadores extends CI_Controller {
 			"telefono" => $tel,
 			"direccion" => $dir,
         ));
-      redirect("Fiadores/registro");
+      redirect("Fiadores/registro"); 
 		}	
 	}
 	
@@ -86,10 +87,61 @@ class Fiadores extends CI_Controller {
 
 	//desactiva un Fiador
 	public function desactivar($id){
+		$contador = 0;
+		$mensaje = null;
+		//solicita los clientes que esten con el id del fiador que se le esta pasando.
+		$clientes = $this->Clientes_Model->infoClientes($id);
 
-		$this->Fiadores_Model->update_fiador_desactivar($id); 
-		redirect("Fiadores/getFiadores");
-		
+		if($clientes){
+			foreach($clientes as $item){
+				$estad_credi = $this->Fact_Credito_Model->estadoCredito($item["cedula"]);
+
+				if($estad_credi){
+					foreach($estad_credi as $item2){ $valor = $item2["estado_factura"]; }
+				
+					if($valor == "p"){
+						$contador = $contador + 1;
+					}
+				}
+			}
+		}
+
+		if($contador > 0){
+			$mensaje = "Tiene creditos que pagar.";
+			$this->session->set_flashdata('error_msg', $mensaje);
+			$this->getFiadores();
+		}
+		else{
+
+			$result = $this->Fiadores_Model->update_fiador_desactivar($id); 
+			if($result){
+
+				//verifica si hay clientes con el id del fiador que se le esta pasando por parametro.
+				if($clientes){
+					foreach($clientes as $datos){
+						$cedula = $datos["cedula"];
+						$nombre = $datos["nombre"];
+						$apellidos = $datos["apellidos"];
+						$telefono = $datos["telefono"];
+						$direccion = $datos["direccion"];
+						$fiador = 0;
+						$estado = $datos["estado"];
+
+						$this->Clientes_Model->update_cliente_fiador($cedula, $nombre, $apellidos, $telefono, $direccion, $fiador, $estado);					
+					}
+
+					$this->getFiadores();
+				}
+				else{
+					$this->getFiadores();
+				}			
+			}
+			else{
+				///mensaje de error
+				$this->getFiadores();
+			}
+
+		}
 	}
 }
 ?>
