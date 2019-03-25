@@ -123,7 +123,7 @@ class Clientes extends CI_Controller {
       foreach($estado as $item){ $valor = $item["estado_factura"]; }
       if($valor == "p"){
         $resultado = "pendiente";
-      }
+      } 
 
       if($resultado != "pendiente"){
         //este foreach recorer la lista para ver si el cliente tiene fiador

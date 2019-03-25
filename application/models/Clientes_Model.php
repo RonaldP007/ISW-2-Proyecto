@@ -53,7 +53,7 @@ Class Clientes_Model extends CI_model{
 
     $this->db->select('*');
     $this->db->from('fiadores');
-    //$this->db->where('id',$id);
+    $this->db->where('estado', "a");
 		$result = $this->db->get();
 
 		if(!$result->num_rows() == 1){
