@@ -15,7 +15,7 @@ Class Fact_Credito_Model extends CI_model{
   public $estado_factura;
 
   public function __construct(){
-  $this->load->database();
+    $this->load->database();
   }
   
   //registra una nueva factura credito.
@@ -38,7 +38,7 @@ Class Fact_Credito_Model extends CI_model{
   public function estadoCredito($usuario){ 
       $this->db->select('*');
       $this->db->from('factura_credito'); 
-      $this->db->where('id_cliente_credito', $usuario); //
+      $this->db->where('id_cliente_credito', $usuario); // 
       $query= $this->db->get();
 
       return $query->result_array(); 

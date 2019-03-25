@@ -23,7 +23,7 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-success">
                         <div class="panel-heading">
-                            <h2 class="panel-title">Edicion</h2>
+                            <h2 class="panel-title">Edicion</h2> 
                         </div>
 
                         <div class="panel-body">

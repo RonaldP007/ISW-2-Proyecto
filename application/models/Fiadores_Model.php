@@ -79,7 +79,7 @@ Class Fiadores_Model extends CI_model{
 
 
 	//Cambia la informacion de un Fiador
-	public function update_fiador($cedula){
+	public function update_fiador($cedula){ 
 		$data=array(
 			'nombre' => $this->input->post('nombre'),
 			'apellidos' => $this->input->post('apellidos'),
