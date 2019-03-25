@@ -102,8 +102,13 @@ class Usuarios extends CI_Controller {
 				$date2 = new DateTime($valores["fecha_pago"]);
 				$diff = $date1->diff($date2);
 				$dias = $diff->days;
-				if($dias <= 5){
-					$contador = $contador + 1;
+
+				if($date1 <= $date2){
+					
+					if($dias >= 0 && $dias <= 5){
+						$contador = $contador + 1;
+					}
+				
 				}
 			}
 			//echo $contador;

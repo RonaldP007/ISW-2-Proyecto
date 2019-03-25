@@ -55,36 +55,6 @@ class Cuentas_pagar extends CI_Controller {
 	}
 
 
-	public function fechas(){
-		date_default_timezone_set("America/Costa_Rica");
-		$array_fechas = $this->Cuentas_pagar_Model->ver_info_fecha();
-		//var_dump($array_fechas);
-		$contador = 0;
-		if($array_fechas[0] != false){
-			$hoy = date("Y-m-d");
-			
-			//echo $hoy;
-			$date1 = new DateTime($hoy);	 
-			
-			foreach($array_fechas as $valores){
-				$date2 = new DateTime($valores["fecha_pago"]);
-				$diff = $date1->diff($date2);
-				$dias = $diff->days;
-				echo $dias;
-				if($dias > 0 && $dias <= 5){
-					$contador = $contador + 1;
-				}
-			}
-			//echo $contador;
-			return $contador;
-			
-		}else{
-			return false;
-		}
-
-	}
-
-
 	//edita una cuenta a pagar
 	public function editar($id){
 
