@@ -84,16 +84,16 @@ Class Clientes_Model extends CI_model{
 
 	}
 
-	 // Carga la informacion de un cliente
-	 public function cliente($cedula){
+	// Carga la informacion de un cliente
+	public function cliente($cedula){
 
-        $this->db->select('*');
-        $this->db->from('clientes');
-        $this->db->where('cedula',$cedula);
+    $this->db->select('*');
+    $this->db->from('clientes');
+    $this->db->where('cedula',$cedula);
 
-        $result = $this->db->get();
+    $result = $this->db->get();
 
-        return $result->result_array();
+    return $result->result_array();
 	}
 
 
@@ -122,6 +122,40 @@ Class Clientes_Model extends CI_model{
 
 		$this->db->delete("clientes", array("cedula" => $cedula));
 	
-	}
+  }
+  
+  //extrae la informacion de los cliente deacuerdo a el id fiador.
+  public function infoClientes($id){
+
+    $this->db->select('*'); 
+    $this->db->from('clientes');
+    $this->db->where('estado','a');
+    $this->db->where('id_fiador',$id);
+
+    if($query=$this->db->get()){
+
+      return $query->result_array();
+      //return $query->row_array();
+    
+    }
+    else{
+      return false;
+    }
+  }
+
+  //Cambia la informacion de un cliente
+	public function update_cliente_fiador($cedula, $nombre, $apellidos, $telefono, $direccion, $fiador, $estado){
+		$data=array(
+			'nombre' => $nombre,
+			'apellidos'=> $apellidos,
+			'telefono'=> $telefono,
+			'direccion'=> $direccion,
+			'id_fiador'=> $fiador,
+			'estado'=> $estado
+		);
+		
+		$this->db->where('cedula',$cedula);
+		return $this->db->update('clientes',$data);     
+  }
 }
 ?>
