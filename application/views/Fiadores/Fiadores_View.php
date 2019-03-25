@@ -9,10 +9,21 @@
     <title>Fiadores</title>
 	  <link href="<?php echo base_url(); ?>/assets/css/bootstrap.css" rel="stylesheet">
 	  <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/styles.css">
+    <script src = "https://code.jquery.com/jquery-3.0.0.js"> </script>
   </head>
 
   <body>
     <div class="container">
+      <!--Este scrip es para mostrar el div que contiene el mensaje-->
+      <script>
+        function timeMSJ(id) {
+          let idDiv2 = id;
+          $("#mostrar").css("display", "block");
+          setTimeout(function() {
+              $(idDiv2).fadeOut(1000);
+          },2000);
+        }
+      </script>
 
       <div>
         <a href="<?= base_url('Usuarios/user_view') ?>">
@@ -22,6 +33,26 @@
 
       <br /> <br /> <br />
       <br /> <br /> <br />
+
+      <?php
+        //recive el mensaje
+        $error_msg = $this->session->flashdata('error_msg'); 
+      ?>
+
+      <div id="mostrar" style="display: none; padding: 1.75%; background-color: transparent; margin-top: 1%; margin-bottom: -0.99%;">
+      
+        <div style="margin-bottom: -1.80%; margin-top: -1.80%;" id="msj_danger" class="alert alert-danger">
+          <?php if($error_msg) :?>
+            <p style="text-align: center;"> <?php echo $error_msg; ?> </p>
+            <script> timeMSJ("#msj_danger") </script>
+          <?php 
+            $error_msg = null; 
+            $this->session->set_flashdata('error_msg', $error_msg);
+            endif; 
+          ?>
+        </div>
+      
+      </div>
 
       <div class="panel panel-info" style="margin-top: 20px;">
         
@@ -84,7 +115,7 @@
 
 						</tr>
                           
-					<?php }}?>
+					<?php }}?> 
                     
                 </tr>
               </tbody>
