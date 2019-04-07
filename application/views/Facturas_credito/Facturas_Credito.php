@@ -41,6 +41,7 @@
                   <th style="text-align: center;">ID Cliente</th>
                   <th style="text-align: center;">Nombre Cliente</th>
                   <th style="text-align: center;">Fecha</th>
+                  <th style="text-align: center;">Abono</th>
                   <th style="text-align: center;">Falta Cancelar</th>
                   <th></th>
                   <th></th>
@@ -66,6 +67,10 @@
 
                   <td><?php 
                     echo $item['fecha_credito'];
+                  ?></td>
+
+                  <td><?php 
+                    echo "₡" . $item['total_adeudado'];
                   ?></td>
 
                   <td><?php 
