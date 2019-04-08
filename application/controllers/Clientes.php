@@ -152,7 +152,7 @@ class Clientes extends CI_Controller {
 
 		$this->Clientes_Model->update_cliente_desactivar($id); 
 		redirect("Clientes/getClientes");
-		
+		 
 	}
 
 }
