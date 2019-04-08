@@ -26,8 +26,8 @@
 
       <div class="panel panel-info" style="margin-top: 20px;">
         
-        <div class="panel-heading" style="display: flex; text-align: center;">
-            <h3 class="panel-title" style="margin-top: 5px;">Facturas Creditos</h3>
+        <div class="panel-heading" style="display: flex; text-align: center; background-color: #d9edf7;">
+            <h3 class="panel-title" style="margin-top: 5px; font-size: 150%; color: #31708f;">Facturas Creditos</h3>
         </div>
 
         <div class="panel-body detalle-producto">
